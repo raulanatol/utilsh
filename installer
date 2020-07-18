@@ -8,5 +8,7 @@ read -rp "🤔 Where do you want to install me? (default ~/.rautils): " RAUTILS_
 echo
 RAUTILS_PATH=${RAUTILS_PATH:-"$HOME/.rautils"}
 echo "👉  Cloning into: '$RAUTILS_PATH'"
-
 git clone --depth 1 git@github.com:raulanatol/rautils.git "$RAUTILS_PATH"
+echo
+echo "👌 Remember create the environment variable and restart the shell"
+echo "RAUTILS_PATH=$RAUTILS_PATH"

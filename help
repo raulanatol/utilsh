@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "👋 Hello from rautils"
+open https://github.com/raulanatol/rautils#list-of-tools
