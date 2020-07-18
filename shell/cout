@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+RESET="\e[0m"
+RED="\e[31m"
+
+sout::error() {
+  printf "${RED}❗%s$RESET\n" "$@"
+}
