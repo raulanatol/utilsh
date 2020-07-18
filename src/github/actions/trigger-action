@@ -2,11 +2,8 @@
 
 set -eo pipefail
 
-# FIXME
-export RAUTILS_PATH="/Users/raulanatol/work/rautils"
-
-source "$RAUTILS_PATH/shell/cout"
-source "$RAUTILS_PATH/shell/assert"
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/assert"
 
 assert::rautils_env_exist
 assert::env_exist GITHUB_TOKEN
