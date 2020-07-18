@@ -12,12 +12,12 @@ assert::arguments_more_than 3 $#
 REPOSITORY_OWNER=$1
 REPOSITORY_NAME=$2
 EVENT_TYPE=$3
-DISPATCH_EXTRA_DATA=$4
+DISPATCH_EXTRA_DATA="${@:4}"
 
 DATA="{ \"event_type\": \""$EVENT_TYPE"\""
 
 if [[ -n ${DISPATCH_EXTRA_DATA} ]]; then
-  DATA="$DATA, \"client_payload\": $DISPATCH_EXTRA_DATA"
+  DATA="$DATA, \"client_payload\": "${DISPATCH_EXTRA_DATA}""
 fi
 
 DATA="$DATA }"
