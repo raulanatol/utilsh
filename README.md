@@ -44,5 +44,9 @@ RAUTILS_PATH=~/utils/rautils
     
  * 🍎 mac
     * 🔇 not_disturb: Enter/Exit not disturb mode
+    * 📶 wifi:
+        * On/Off Wifi
+        * dhcp: Renew DHCP Lease
+        * password: Get password of the current wifi 
     
     
