@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+LOCAL_OR_PUBLIC=$(string::to_uppercase "$1")
+DEVICE=${2:-en0}
+
+if [[ $LOCAL_OR_PUBLIC != '-L' ]]; then
+  sout::info "📡 public: $(dig +short myip.opendns.com @resolver1.opendns.com)"
+else
+  sout::info "📡 local: $(ipconfig getifaddr "$DEVICE")"
+fi

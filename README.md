@@ -50,6 +50,7 @@ RAUTILS_PATH=~/utils/rautils
  * 🌍 network
     * 🐌 speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
     * 🔌 ports: List of used ports
+    * 📡 ip: Get the local (-l) or public ip
     
  * 🧰 shell
     * 🎨 cout: Console out functions
