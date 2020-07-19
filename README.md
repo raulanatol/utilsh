@@ -35,3 +35,6 @@ RAUTILS_PATH=~/utils/rautils
         
  * 🧰 shell
     * 🎨 cout: Console out functions
+    
+ * 🍎 mac
+    * 🔇 not_disturb: Enter/Exit not disturb mode

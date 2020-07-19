@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+NOTIFICATION_CENTER_UI="$HOME/Library/Preferences/ByHost/com.apple.notificationcenterui"
+
+ACTION=$(string::to_uppercase "$1")
+
+if [[ $ACTION != 'OFF' ]]; then
+  DURATION=$(date -u +"%Y-%m-%d %H:%M:%S +000")
+
+  defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturb -boolean true
+  defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturbDate -date "$DURATION"
+  killall NotificationCenter
+  sout:info "🔇 done!"
+else
+  defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturb -boolean false
+  killall NotificationCenter
+  sout:info "🔈 done!"
+fi

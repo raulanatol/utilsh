@@ -2,7 +2,12 @@
 
 RESET="\e[0m"
 RED="\e[31m"
+BLUE="\e[34m"
 
 sout::error() {
   printf "${RED}❗%s$RESET\n" "$@"
+}
+
+sout:info() {
+  printf "${BLUE}%s$RESET\n" "$@"
 }
