@@ -21,7 +21,7 @@ change_version() {
 
 create_tag() {
   git commit -am "Close version $NEW_VERSION"
-  git tag "v$NEW_VERSION" -a "$NEW_VERSION"
+  git tag "v$NEW_VERSION" -m "$NEW_VERSION"
   git push origin --tags
 }
 
