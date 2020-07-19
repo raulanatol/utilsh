@@ -1,0 +1,7 @@
+git::current_branch() {
+  git rev-parse --abbrev-ref HEAD
+}
+
+git::has_changes() {
+  git status --porcelain
+}

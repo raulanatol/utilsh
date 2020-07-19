@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+semversion::increase() {
+  VERSION=$1
+  INCREASE=$(string::to_uppercase "$2")
+
+  IFS=. read -r major minor patch <<<"$VERSION"
+
+  case "$INCREASE" in
+  "PATCH")
+    ((patch++))
+    ;;
+  "MINOR")
+    patch=0
+    ((minor++))
+    ;;
+  "MAJOR")
+    minor=0
+    patch=0
+    ((major++))
+    ;;
+  *)
+    sout::error "Invalid INCREASE word use: 'major' | 'minor' | 'patch'"
+    ;;
+  esac
+
+  echo "$major"."$minor"."$patch"
+}

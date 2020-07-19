@@ -26,6 +26,9 @@ RAUTILS_PATH=~/utils/rautils
 
 ## List of tools
 
+ * 🎋 Git
+    * git: Git scripts, get current branch, etc.
+
  * 👨‍💻 Github
     * 🚀 Actions
         * trigger-action: Launch an action manually

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+string::to_uppercase() {
+  echo "$@" | tr [a-z] [A-Z]
+}
