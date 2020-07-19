@@ -48,5 +48,5 @@ RAUTILS_PATH=~/utils/rautils
         * On/Off Wifi
         * dhcp: Renew DHCP Lease
         * password: Get password of the current wifi 
-    
+    * 🙈 hidden_files: Show/Hide hidden files
     

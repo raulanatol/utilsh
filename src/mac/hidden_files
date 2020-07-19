@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+ACTION=$(string::to_uppercase "$1")
+
+if [[ $ACTION == SHOW ]]; then
+  defaults write com.apple.finder AppleShowAllFiles YES
+  sout:info "🙊 show hidden files"
+else
+  defaults write com.apple.finder AppleShowAllFiles NO
+  sout:info "🙈 hide hidden files"
+fi
+
+killall Finder
