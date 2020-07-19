@@ -46,6 +46,7 @@ RAUTILS_PATH=~/utils/rautils
         * dhcp: Renew DHCP Lease
         * password: Get password of the current wifi 
     * 🙈 hidden_files: Show/Hide hidden files
+    * 🥶 bluetooth: On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
     
  * 🌍 network
     * 🐌 speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
