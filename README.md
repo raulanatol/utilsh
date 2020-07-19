@@ -24,6 +24,13 @@ RAUTILS_PATH=~/utils/rautils
 ./$RAUTILS_PATH/help
 ```
 
+## Update
+
+```shell script
+./$RAUTILS_PATH/src/update
+```
+
+
 ## List of tools
 
  * 👩‍💻 development
