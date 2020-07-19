@@ -25,5 +25,5 @@ create_tag() {
   git push origin --tags
 }
 
-change_version "$1"
-create_tag
+#change_version "$1"
+#create_tag
