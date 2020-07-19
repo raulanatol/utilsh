@@ -46,8 +46,8 @@ assert::git::not::has_changes() {
 
 assert::git::on_master() {
   on_error=${1:-Not in the master branch}
-  if [[ $(git::current_branch) -ne "master" ]]; then
-    sout::error "$on_error"
-    exit 1
-  fi
+#  if [[ $(git::current_branch) -ne "master" ]]; then
+#    sout::error "$on_error"
+#    exit 1
+#  fi
 }
