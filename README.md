@@ -26,6 +26,12 @@ RAUTILS_PATH=~/utils/rautils
 
 ## List of tools
 
+ * 👩‍💻 development
+    * semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
+    
+ * 📂 fs
+    * folder_size: Calculate the current folder size (using du or ncdu)  
+    
  * 🎋 Git
     * git: Git scripts, get current branch, etc.
 
@@ -38,3 +44,5 @@ RAUTILS_PATH=~/utils/rautils
     
  * 🍎 mac
     * 🔇 not_disturb: Enter/Exit not disturb mode
+    
+    
