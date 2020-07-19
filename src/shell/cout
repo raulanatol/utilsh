@@ -8,6 +8,6 @@ sout::error() {
   printf "${RED}❗%s$RESET\n" "$@"
 }
 
-sout:info() {
+sout::info() {
   printf "${BLUE}%s$RESET\n" "$@"
 }
