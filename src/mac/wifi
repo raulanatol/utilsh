@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+ACTION=$(string::to_lowercase "$1")
+DEVICE=${2:-en0}
+
+case "$ACTION" in
+"off" | "on")
+  networksetup -setairportpower "$DEVICE" "$ACTION"
+  ;;
+"dhcp")
+  sudo ipconfig set "$DEVICE" DHCP
+  ;;
+"password")
+  ssid="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}')"
+  security find-generic-password -D "AirPort network password" -a "$ssid" -gw
+  ;;
+*)
+  sout::error "Invalid action $ACTION"
+  ;;
+esac

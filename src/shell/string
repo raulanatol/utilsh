@@ -3,3 +3,7 @@
 string::to_uppercase() {
   echo "$@" | tr [a-z] [A-Z]
 }
+
+string::to_lowercase() {
+  echo "$@" | tr [A-Z] [a-z]
+}
