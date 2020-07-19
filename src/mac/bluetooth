@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+source "$RAUTILS_PATH/src/shell/string"
+
+ACTION=$(string::to_lowercase "$1")
+
+if [[ $ACTION != 'off' ]]; then
+  blueutil --power 0
+  sout::info "🥶 Bluetooth enabled!"
+else
+  blueutil --power 1
+  sout::info "✋🥶 Bluetooth disabled!"
+fi
