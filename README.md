@@ -38,10 +38,7 @@ RAUTILS_PATH=~/utils/rautils
  * 👨‍💻 Github
     * 🚀 Actions
         * trigger-action: Launch an action manually
-        
- * 🧰 shell
-    * 🎨 cout: Console out functions
-    
+           
  * 🍎 mac
     * 🔇 not_disturb: Enter/Exit not disturb mode
     * 📶 wifi:
@@ -50,3 +47,10 @@ RAUTILS_PATH=~/utils/rautils
         * password: Get password of the current wifi 
     * 🙈 hidden_files: Show/Hide hidden files
     
+ * 🌍 network
+    * 🐌 speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
+     
+    
+ * 🧰 shell
+    * 🎨 cout: Console out functions
+     

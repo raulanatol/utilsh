@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$RAUTILS_PATH/src/shell/cout"
+
+if ! [ -x "$(command -v fast)" ]; then
+  sout::error "This command needs fast (https://github.com/sindresorhus/fast-cli) install first"
+  exit 1
+fi
+
+fast --upload
