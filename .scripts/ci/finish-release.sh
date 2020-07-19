@@ -8,7 +8,7 @@ source "$RAUTILS_PATH/src/development/semversion"
 source "$RAUTILS_PATH/src/git/git"
 
 assert::total_arguments $# 1 "Please specify the version increase: minor | major | patch"
-#assert::git::not::has_changes
+assert::git::not::has_changes
 assert::git::on_master
 
 BRANCH=$(git::current_branch)
@@ -25,5 +25,5 @@ create_tag() {
   git push origin --tags
 }
 
-#change_version "$1"
-#create_tag
+change_version "$1"
+create_tag
