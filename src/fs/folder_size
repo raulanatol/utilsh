@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $1 == '-c' ]]; then
+  ncdu --color dark -rr -x
+else
+  du -sh .
+fi
