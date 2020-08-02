@@ -15,9 +15,9 @@ if [[ $ACTION != 'OFF' ]]; then
   defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturb -boolean true
   defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturbDate -date "$DURATION"
   killall NotificationCenter
-  sout::info "🔇 done!"
+  sout::info "🔈 done!"
 else
   defaults -currentHost write "$NOTIFICATION_CENTER_UI" doNotDisturb -boolean false
   killall NotificationCenter
-  sout::info "🔈 done!"
+  sout::info "🔇 done!"
 fi
