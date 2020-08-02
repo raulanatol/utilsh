@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$RAUTILS_PATH/src/git/git"
+source "$UTILSH_PATH/src/git/git"
 
 assert::env_exist() {
   result=$(env | awk -F '=' "/$1/ {print \$1}" | grep -c -E -i "^$1\$")
@@ -10,8 +10,8 @@ assert::env_exist() {
   fi
 }
 
-assert::rautils_env_exist() {
-  assert::env_exist RAUTILS_PATH
+assert::utilsh_env_exist() {
+  assert::env_exist utilsh_PATH
 }
 
 assert::total_arguments() {

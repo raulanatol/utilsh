@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-echo "♻️️ Updating rautils"
-cd "$RAUTILS_PATH"
+echo "♻️️ Updating utilsh"
+cd "$UTILSH_PATH"
 git checkout master
 git pull
 echo "👌 Done!"

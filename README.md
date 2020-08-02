@@ -1,11 +1,11 @@
-# rautils
+# utilsh
 
 Shell scripts, apps, tools, utils and misc.
 
 ## Install
 
 ```shell script
-bash <(curl -s https://raw.githubusercontent.com/raulanatol/rautils/master/installer)
+bash <(curl -s https://raw.githubusercontent.com/raulanatol/utilsh/master/installer)
 ```
 
 ## Manual Install 
@@ -15,19 +15,19 @@ bash <(curl -s https://raw.githubusercontent.com/raulanatol/rautils/master/insta
 - Create the tools env variable
 
 ```shell script
-RAUTILS_PATH=..../REPOSITORY_BASE_DIR
-RAUTILS_PATH=~/utils/rautils
+utilsh_PATH=..../REPOSITORY_BASE_DIR
+utilsh_PATH=~/utils/utilsh
 ```
 
 - Use me!
 ```shell script
-./$RAUTILS_PATH/help
+./$UTILSH_PATH/help
 ```
 
 ## Update
 
 ```shell script
-./$RAUTILS_PATH/src/update
+./$UTILSH_PATH/src/update
 ```
 
 

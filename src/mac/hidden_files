@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-source "$RAUTILS_PATH/src/shell/cout"
-source "$RAUTILS_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/string"
 
 ACTION=$(string::to_uppercase "$1")
 

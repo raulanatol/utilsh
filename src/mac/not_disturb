@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-source "$RAUTILS_PATH/src/shell/cout"
-source "$RAUTILS_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/string"
 
 NOTIFICATION_CENTER_UI="$HOME/Library/Preferences/ByHost/com.apple.notificationcenterui"
 

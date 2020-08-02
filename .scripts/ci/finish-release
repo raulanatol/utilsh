@@ -2,10 +2,10 @@
 
 set -eu
 
-source "$RAUTILS_PATH/src/shell/cout"
-source "$RAUTILS_PATH/src/shell/assert"
-source "$RAUTILS_PATH/src/development/semversion"
-source "$RAUTILS_PATH/src/git/git"
+source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/assert"
+source "$UTILSH_PATH/src/development/semversion"
+source "$UTILSH_PATH/src/git/git"
 
 assert::total_arguments $# 1 "Please specify the version increase: minor | major | patch"
 assert::git::not::has_changes

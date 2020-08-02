@@ -2,13 +2,13 @@
 
 set -euo pipefail
 
-echo "🚀 Installing rautils"
+echo "🚀 Installing utilsh"
 echo
-read -rp "🤔 Where do you want to install me? (default ~/.rautils): " RAUTILS_PATH
+read -rp "🤔 Where do you want to install me? (default ~/.utilsh): " UTILSH_PATH
 echo
-RAUTILS_PATH=${RAUTILS_PATH:-"$HOME/.rautils"}
-echo "👉  Cloning into: '$RAUTILS_PATH'"
-git clone --depth 1 git@github.com:raulanatol/rautils.git "$RAUTILS_PATH"
+UTILSH_PATH=${utilsh_PATH:-"$HOME/.utilsh"}
+echo "👉  Cloning into: '$UTILSH_PATH'"
+git clone --depth 1 git@github.com:raulanatol/utilsh.git "$UTILSH_PATH"
 echo
 echo "👌 Remember create the environment variable and restart the shell"
-echo "RAUTILS_PATH=$RAUTILS_PATH"
+echo "UTILSH_PATH=$UTILSH_PATH"

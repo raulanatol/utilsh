@@ -2,10 +2,10 @@
 
 set -eo pipefail
 
-source "$RAUTILS_PATH/src/shell/cout"
-source "$RAUTILS_PATH/src/shell/assert"
+source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/assert"
 
-assert::rautils_env_exist
+assert::utilsh_env_exist
 assert::env_exist GITHUB_TOKEN
 assert::arguments_more_than 3 $#
 

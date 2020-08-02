@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-echo "👋 Hello from rautils"
-open https://github.com/raulanatol/rautils#list-of-tools
+echo "👋 Hello from utilsh"
+open https://github.com/raulanatol/utilsh#list-of-tools
