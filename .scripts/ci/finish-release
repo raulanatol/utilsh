@@ -2,9 +2,9 @@
 
 set -eu
 
-source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/sout"
 source "$UTILSH_PATH/src/shell/assert"
-source "$UTILSH_PATH/src/development/semversion"
+source "$UTILSH_PATH/src/shell/development"
 source "$UTILSH_PATH/src/git/git"
 
 assert::total_arguments $# 1 "Please specify the version increase: minor | major | patch"
@@ -13,7 +13,7 @@ assert::git::on_master
 
 BRANCH=$(git::current_branch)
 CURRENT_VERSION=$(cat version)
-NEW_VERSION=$(semversion::increase "$CURRENT_VERSION" "$1")
+NEW_VERSION=$(development::increase_semversion "$CURRENT_VERSION" "$1")
 
 change_version() {
   echo "$NEW_VERSION" >version

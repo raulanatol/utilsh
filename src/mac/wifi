@@ -2,8 +2,24 @@
 
 set -eo pipefail
 
-source "$UTILSH_PATH/src/shell/cout"
+source "$UTILSH_PATH/src/shell/sout"
 source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/docs"
+
+##? 📶 wifi:
+##?   * On/Off Wifi
+##?   * dhcp: Renew DHCP Lease
+##?   * password: Get password of the current wifi
+#?? 1.0.0
+##?
+##? Usage:
+##?
+##?    wifi <on>
+##?    wifi <off>
+##?    wifi <dhcp>
+##?    wifi <password>
+
+docs::help "$@"
 
 ACTION=$(string::to_lowercase "$1")
 DEVICE=${2:-en0}

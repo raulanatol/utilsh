@@ -2,4 +2,15 @@
 
 set -eo pipefail
 
+source "$UTILSH_PATH/src/shell/docs"
+
+##? 🔌 ports: List of used ports
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    ports
+
+docs::help "$@"
+
 sudo lsof -iTCP -sTCP:LISTEN -P

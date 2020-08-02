@@ -33,18 +33,11 @@ utilsh_PATH=~/utils/utilsh
 
 ## List of tools
 
- * 👩‍💻 development
-    * semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
-    
  * 📂 fs
     * folder_size: Calculate the current folder size (using du or ncdu)  
-    
- * 🎋 Git
-    * git: Git scripts, get current branch, etc.
 
- * 👨‍💻 Github
-    * 🚀 Actions
-        * trigger-action: Launch an action manually
+ * 🐙 Github
+    * 🚀 trigger-action: Launch an action manually
            
  * 🍎 mac
     * 🔇 not_disturb: Enter/Exit not disturb mode
@@ -61,5 +54,8 @@ utilsh_PATH=~/utils/utilsh
     * 📡 ip: Get the local (-l) or public ip
     
  * 🧰 shell
-    * 🎨 cout: Console out functions
-     
+    * 🎨 sout: Console out functions
+    * 👩‍💻 development: Scripts related with development
+        * increase_semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
+    * 🎋 Git
+        * git: Git scripts, get current branch, etc.

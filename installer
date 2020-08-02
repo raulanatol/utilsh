@@ -12,3 +12,5 @@ git clone --depth 1 git@github.com:raulanatol/utilsh.git "$UTILSH_PATH"
 echo
 echo "👌 Remember create the environment variable and restart the shell"
 echo "UTILSH_PATH=$UTILSH_PATH"
+echo "and export the bin path"
+echo "PATH=PATH:$UTILSH_PATH/bin"
