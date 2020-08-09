@@ -3,6 +3,7 @@
 set -euo pipefail
 
 source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
 
 ##? ♻️️ Update utilsh
 ##?
@@ -13,8 +14,17 @@ source "$UTILSH_PATH/src/shell/docs"
 
 docs::help "$@"
 
-echo "♻️️ Updating utilsh"
+update_dotfiles() {
+  if [[ -n "${DOTFILES_PATH}" ]]; then
+    "$DOTFILES_PATH"/bin/update
+  fi
+}
+
+sout::info " ♻️️  Updating utilsh"
 cd "$UTILSH_PATH"
 git checkout master
 git pull
-echo "👌 Done!"
+
+update_dotfiles
+
+sout::info " 👌 Done!"
