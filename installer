@@ -6,7 +6,7 @@ echo "🚀 Installing utilsh"
 echo
 read -rp "🤔 Where do you want to install me? (default ~/.utilsh): " UTILSH_PATH
 echo
-UTILSH_PATH=${utilsh_PATH:-"$HOME/.utilsh"}
+UTILSH_PATH=${UTILSH_PATH:-"$HOME/.utilsh"}
 echo "👉  Cloning into: '$UTILSH_PATH'"
 git clone --depth 1 git@github.com:raulanatol/utilsh.git "$UTILSH_PATH"
 echo

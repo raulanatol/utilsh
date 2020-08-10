@@ -59,3 +59,4 @@ utilsh_PATH=~/utils/utilsh
         * increase_semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
     * 🎋 Git
         * git: Git scripts, get current branch, etc.
+    * 👾 os

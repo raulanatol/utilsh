@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-so::command_exists() {
+os::command_exists() {
   type "$1" >/dev/null 2>&1
 }
 
-so::is_macos() {
+os::is_macos() {
   [[ $(uname -s) == "Darwin" ]]
 }
 
-so::is_linux() {
+os::is_linux() {
   [[ $(uname -s) == "Linux" ]]
 }
