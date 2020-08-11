@@ -14,17 +14,9 @@ source "$UTILSH_PATH/src/shell/sout"
 
 docs::help "$@"
 
-update_dotfiles() {
-  if [[ -n "${DOTFILES_PATH}" ]]; then
-    "$DOTFILES_PATH"/bin/update
-  fi
-}
-
 sout::info " ♻️️  Updating utilsh"
 cd "$UTILSH_PATH"
 git checkout master
 git pull
-
-update_dotfiles
 
 sout::info " 👌 Done!"
