@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+source "$UTILSH_PATH/src/shell/sout.sh"
+source "$UTILSH_PATH/src/shell/git.sh"
+
+##? 🎃 Open the github actions page of the current project
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    actions
+
+docs::eval "$@"
+
+if (! git::is_in_repo); then
+  sout::error "Not in a git repo!"
+  exit 0
+fi
+
+REMOTE_URL=$(git remote get-url origin)
+if [ -z "$REMOTE_URL" ]; then
+  sout::error "No remote found"
+  exit 0
+fi
+
+HTTP_REMOTE_URL=$(echo "$REMOTE_URL" | sed -e 's/git@github.com:/https:\/\/github.com\//')
+HTTP_REMOTE_URL=$(echo "$HTTP_REMOTE_URL" | sed -e 's/\.git/\/actions/')
+open "$HTTP_REMOTE_URL"
