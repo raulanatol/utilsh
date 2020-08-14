@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+##? 🐳 A simple terminal UI for both docker and
+##? docker-compose, written in Go with the gocui library.
+##?
+##? Using: https://github.com/jesseduffield/lazydocker
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    lazydocker
+
+docs::help "$@"
+
+install_lazydocker() {
+  if os::is_macos; then
+    brew install jesseduffield/lazydocker/lazydocker
+    brew install lazydocker
+  fi
+}
+
+if ! [ -x "$(command -v lazydocker)" ]; then
+  sout::error "This command needs lazydocker (https://github.com/jesseduffield/lazydocker) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_lazydocker
+fi
+
+lazydocker

@@ -33,6 +33,10 @@ utilsh_PATH=~/utils/utilsh
 
 ## List of tools
 
+ * 🐳 docker
+    * ctop: Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
+    * lazydocker: A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
+
  * 📂 fs
     * folder_size: Calculate the current folder size (using du or ncdu)  
  

@@ -11,3 +11,11 @@ sout::error() {
 sout::info() {
   printf "${BLUE}%s$RESET\n" "$@"
 }
+
+sout::sure_question() {
+  read -p "$1" yn
+  case $yn in
+  [Yy]*) echo "Y" ;;
+  *) echo "N" ;;
+  esac
+}
