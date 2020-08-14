@@ -19,6 +19,11 @@ if (! git::is_in_repo); then
   exit 0
 fi
 
+if ! (git::has_remote); then
+  sout::error "Not remote found"
+  exit 1
+fi
+
 REMOTE_URL=$(git remote get-url origin)
 if [ -z "$REMOTE_URL" ]; then
   sout::error "No remote found"

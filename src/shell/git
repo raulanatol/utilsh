@@ -24,6 +24,10 @@ git::has_uncommitted_changes() {
   git status --porcelain
 }
 
+git::has_remote() {
+  git ls-remote HEAD >/dev/null 2>&1
+}
+
 git::get_remote_https_url() {
   local remote_url
   local http_remote_url

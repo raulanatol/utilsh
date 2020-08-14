@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/git"
+source "$UTILSH_PATH/src/shell/assert"
+source "$UTILSH_PATH/src/shell/sout"
+
+##? Open a git branch given the issue id
+#?? 1.0.0
+##?
+##? Usage:
+##?    start-issue <issue_number>
+
+docs::help "$@"
+
+if ! (git::is_in_repo); then
+  sout::error "Not in a git repository"
+  exit 1
+fi
+
+assert::total_arguments $# 1
+
+issue_number=$1
+git checkout -b issue_"${issue_number}"
