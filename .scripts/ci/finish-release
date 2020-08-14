@@ -5,7 +5,6 @@ set -eu
 source "$UTILSH_PATH/src/shell/sout"
 source "$UTILSH_PATH/src/shell/assert"
 source "$UTILSH_PATH/src/shell/development"
-source "$UTILSH_PATH/src/git/git"
 
 assert::total_arguments $# 1 "Please specify the version increase: minor | major | patch"
 assert::git::not::has_changes
