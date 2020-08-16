@@ -64,6 +64,7 @@ utilsh_PATH=~/utils/utilsh
     * 📡 ip: Get the local (-l) or public ip
     * 🔌 ports: List of used ports
     * 🐌 speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
+    * 🏹 fetch: Http request using [httpie](https://httpie.org/)
     
  * 🤳 self
     * 🤦‍♂️ update: Update utilsh repo
