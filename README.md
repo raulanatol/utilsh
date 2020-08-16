@@ -46,6 +46,7 @@ utilsh_PATH=~/utils/utilsh
     * pretty-diff: Show a pretty git diff using fzf (and copy selected path to the clipboard)
     * pretty-log: Git log filtering
     * start-issue: Create a branch with the format issue_$PARAM1 (useful with fix) 
+    * ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
  * 🐙 Github
     * 🚀 trigger-action: Launch an action manually

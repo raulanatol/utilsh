@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+##? Blazing fast terminal client for git written in Rust
+##?
+##?  using [gitui](https://github.com/extrawurst/gitui)
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    ui
+
+docs::help "$@"
+
+install_gitui() {
+  if os::is_macos; then
+    brew install gitui
+  fi
+}
+
+if ! [ -x "$(command -v gitui)" ]; then
+  sout::error "This command needs gitui (https://gitui.org/) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_gitui
+fi
+
+gitui
