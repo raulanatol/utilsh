@@ -23,7 +23,7 @@ source "$UTILSH_PATH/src/shell/os"
 docs::help "$@"
 
 install_httpie() {
-  if os::is_mac; then
+  if os::is_macos; then
     brew install httpie
   fi
 }

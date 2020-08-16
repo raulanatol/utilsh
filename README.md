@@ -65,6 +65,7 @@ utilsh_PATH=~/utils/utilsh
     * 🔌 ports: List of used ports
     * 🐌 speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
     * 🏹 fetch: Http request using [httpie](https://httpie.org/)
+    * 🧪 usage: Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
     
  * 🤳 self
     * 🤦‍♂️ update: Update utilsh repo
