@@ -18,6 +18,7 @@ source "$UTILSH_PATH/src/shell/os"
 ##?    fetch GET <url>
 ##?    fetch POST <url> <json_data>
 ##?    fetch PUT <url> <json_data>
+##?    fetch HELP
 
 docs::help "$@"
 
@@ -42,6 +43,9 @@ case $METHOD in
   POST | PUT | GET | DELETE)
     shift 2
     http -j "$METHOD" "$URL" "$@"
+    ;;
+  HELP)
+    open "https://httpie.org/docs"
     ;;
   *)
     sout::error "Invalid method ${METHOD}"
