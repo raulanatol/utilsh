@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/os"
+
+##? 🤖 grex: Grex is a command-line tool and library
+##? for generating regular expressions
+##?
+##?   using [Grex](https://github.com/pemistahl/grex)
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    grex
+
+docs::help "$@"
+
+install_grex() {
+  if os::is_macos; then
+    brew install grex
+  fi
+}
+
+if ! [ -x "$(command -v grex)" ]; then
+  sout::error "This command needs grex (https://github.com/pemistahl/grex) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_grex
+fi
+
+grex "$@"

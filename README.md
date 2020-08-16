@@ -33,6 +33,10 @@ utilsh_PATH=~/utils/utilsh
 
 ## List of tools
 
+ * 👩‍💻 code
+    * tokei: Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
+    * grex: Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
+
  * 🐳 docker
     * ctop: Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
     * lazydocker: A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
@@ -40,7 +44,7 @@ utilsh_PATH=~/utils/utilsh
  * 📂 fs
     * folder_size: Calculate the current folder size (using du or ncdu)  
  
- * 👩‍💻 git
+ * 🎋 git
     * commit: Add all files and then a commit
     * fix: Fix the current branch and create a Pull Request (use with start-issue)
     * pretty-diff: Show a pretty git diff using fzf (and copy selected path to the clipboard)

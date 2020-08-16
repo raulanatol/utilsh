@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/os"
+
+##? 🔍 tokei: Tokei is a program that displays statistics
+##?   about your code
+##?
+##?   using [Tokei](https://github.com/XAMPPRocky/tokei)
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    tokei
+
+docs::help "$@"
+
+install_tokei() {
+  if os::is_macos; then
+    brew install tokei
+  fi
+}
+
+if ! [ -x "$(command -v tokei)" ]; then
+  sout::error "This command needs tokei (https://github.com/XAMPPRocky/tokei) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_tokei
+fi
+
+tokei "$@"
