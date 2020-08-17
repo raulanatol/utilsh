@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/os"
+
+##? Fuzzy search and activate Chrome tab from terminal
+##? Based on:
+##?  - https://github.com/Rasukarusan/fzf-chrome-active-tab
+##?  - https://github.com/rgomezcasas/dotfiles
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?   browser_goto
+
+docs::help "$@"
+
+function getTabs() {
+  local _browser_app="$1"
+  # TODO Fix browser app name
+  osascript -- - "\"$_browser_app\"" <<EOF
+    on run argv
+      set _application to (item 1 of argv)
+      set _output to ""
+      tell application "Brave Browser" # use _application
+          set _window_index to 1
+          repeat with w in windows
+              set _tab_index to 1
+              repeat with t in tabs of w
+                  set _title to get title of t
+                  set _url to get URL of t
+                  set _output to (_output & _title & " - " & _url & " " & _window_index & " " & _tab_index & "\n")
+                  set _tab_index to _tab_index + 1
+              end repeat
+              set _window_index to _window_index + 1
+              if _window_index > count windows then exit repeat
+          end repeat
+      end tell
+      return _output
+    end run
+EOF
+}
+
+function setActiveTab() {
+  local _browser_app=$1
+  local _window_index=$2
+  local _tab_index=$3
+  osascript -- - "$_window_index" "$_tab_index" <<EOF
+  on run argv
+      set _window_index to (item 1 of argv)
+      set _tab_index to item 2 of argv
+      tell application "Brave Browser"  # use _application
+          activate
+          set index of window (_window_index as number) to (_window_index as number)
+          set active tab index of window (_window_index as number) to (_tab_index as number)
+      end tell
+  end run
+EOF
+}
+
+function get_default_browser_name() {
+  case $(os::get_default_browser) in
+    "com.brave.browser")
+      echo "Brave Browser"
+      ;;
+    *)
+      echo "Google Chrome"
+      ;;
+  esac
+}
+
+function main() {
+  local -r default_browser=$(get_default_browser_name)
+  local -r pretty_formatted_tabs=$(getTabs "$default_browser")
+  local -r selected=$(echo "$pretty_formatted_tabs" | choose)
+  local -r windows_num=$(echo "$selected" | rev | awk '{print $2}')
+  local -r tab_num=$(echo "$selected" | rev | awk '{print $1}')
+
+  setActiveTab "$default_browser" "$windows_num" "$tab_num"
+}
+
+main

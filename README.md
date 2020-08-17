@@ -58,6 +58,7 @@ utilsh_PATH=~/utils/utilsh
            
  * 🍎 mac
     * 🥶 bluetooth: On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
+    * 🚀 browser_goto: Select between the opened chrome tabs using [choose](https://github.com/chipsenkbeil/choose)
     * 🙈 hidden_files: Show/Hide hidden files
     * 🔇 not_disturb: Enter/Exit not disturb mode
     * 📶 wifi:
