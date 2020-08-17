@@ -2,6 +2,7 @@
 
 RESET="\e[0m"
 RED="\e[31m"
+GREEN="\e[32m"
 BLUE="\e[34m"
 
 sout::error() {
@@ -10,6 +11,10 @@ sout::error() {
 
 sout::info() {
   printf "${BLUE}%s$RESET\n" "$@"
+}
+
+sout::success() {
+  printf "${GREEN} 🤘 %s$RESET\n" "$@"
 }
 
 sout::sure_question() {

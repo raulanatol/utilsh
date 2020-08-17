@@ -29,7 +29,7 @@ current_branch=$(git::current_branch)
 issue_number=${current_branch#*_}
 
 if ! (string::is_a_number "$issue_number"); then
-  log::error "This is not a valid branch name ${current_branch}"
+  sout::error "This is not a valid branch name ${current_branch}"
   exit 1
 fi
 
@@ -39,4 +39,4 @@ git push -u origin "$(git rev-parse --abbrev-ref HEAD)"
 
 remote_url=$(git::get_remote_https_url)
 open "${remote_url}pull/new/${current_branch}"
-log::success "🤘 Done!"
+sout::success "Done!"
