@@ -25,7 +25,7 @@ git::has_uncommitted_changes() {
 }
 
 git::has_remote() {
-  git ls-remote HEAD >/dev/null 2>&1
+  git remote > /dev/null 2>&1
 }
 
 git::get_remote_https_url() {
