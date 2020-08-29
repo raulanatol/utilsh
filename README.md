@@ -122,6 +122,7 @@ utilsh_PATH=~/utils/utilsh
         * On/Off Wifi
         * dhcp: Renew DHCP Lease
         * password: Get password of the current wifi 
+🥵&nbsp; **powermetrics:** Show the temperature 
 
 ---    
     
