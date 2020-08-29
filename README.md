@@ -24,7 +24,7 @@
   - [🍎 mac](#-mac)
   - [🌍 network](#-network)
   - [🤳 self](#-self)
-  - [🧰  shell](#%F0%9F%A7%B0--shell)
+  - [shell](#shell)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -105,16 +105,16 @@ utilsh_PATH=~/utils/utilsh
 ### 🤳 self
     * 🤦‍♂️ update: Update utilsh repo
          
-### 🧰  shell
+### shell
     
-Shell scrips and utils from shell 
+🧰 Shell scrips and utils 
 
 - 🔶 args: Arguments control
 - ⁉️ assert: Assertion methods
 - 👩‍💻 development: Scripts related with development
-        * increase_semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
-    * 📜 docs: script documentation scripts
-    * 🎋 git: Git scripts, get current branch, etc.
-    * 👾 os: OS shell utils
-    * 🎨 sout: Console out functions
-    * 💹 string: String manipulation scripts
+    - increase_semversion: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
+- 📜 docs: script documentation scripts
+- 🎋 git: Git scripts, get current branch, etc.
+- 👾 os: OS shell utils
+- 🎨 sout: Console out functions
+- 💹 string: String manipulation scripts
