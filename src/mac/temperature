@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/docs"
+
+docs::help "$@"
+
+##? Powermetrics summary of SMC sensors.
+
+sudo powermetrics -n 1 -i 1 --samplers smc
