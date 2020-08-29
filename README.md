@@ -105,7 +105,7 @@ utilsh_PATH=~/utils/utilsh
 ### 🤳 self
     * 🤦‍♂️ update: Update utilsh repo
          
-### Shell scrips and utils (🧰)
+### Shell scrips and utils
 
 - 🔶 args: Arguments control
 - ⁉️ assert: Assertion methods
