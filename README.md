@@ -102,10 +102,13 @@ utilsh_PATH=~/utils/utilsh
     * 🏹 fetch: Http request using [httpie](https://httpie.org/)
     * 🧪 usage: Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
     
-### 🤳 self
-    * 🤦‍♂️ update: Update utilsh repo
+### Self scripts (self)
+
+🤳 Self scripts
+
+- 🤦‍♂️ update: Update utilsh repo
          
-### Shell scrips and utils
+### Shell scrips and utils (shell)
 
 - 🔶 args: Arguments control
 - ⁉️ assert: Assertion methods
