@@ -24,7 +24,7 @@
   - [🍎 mac](#-mac)
   - [🌍 network](#-network)
   - [🤳 self](#-self)
-  - [🧰 shell](#%F0%9F%A7%B0-shell)
+  - [shell](#shell)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -105,7 +105,10 @@ utilsh_PATH=~/utils/utilsh
 ### 🤳 self
     * 🤦‍♂️ update: Update utilsh repo
          
-### 🧰 shell
+### shell
+    
+🧰 Shell scrips and utils from shell 
+
     * 🔶 args: Arguments control
     * ⁉️ assert: Assertion methods
     * 👩‍💻 development: Scripts related with development
