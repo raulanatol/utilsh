@@ -62,63 +62,63 @@ utilsh_PATH=~/utils/utilsh
 
 ### code
 
-👩‍💻&nbsp; tokei: Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
+👩‍💻&nbsp; **tokei:** Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
 
-grex: Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
+**grex:** Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
 
-doctoc: Generates table of contents for markdown files inside local git repository [DocToc](https://github.com/thlorenz/doctoc)
+**doctoc:** Generates table of contents for markdown files inside local git repository [DocToc](https://github.com/thlorenz/doctoc)
     
 ---
 
 ### docker
 
-🐳&nbsp; ctop: Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
+🐳&nbsp; **ctop:** Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
 
-🐳&nbsp; lazydocker: A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
+🐳&nbsp; **lazydocker:** A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 ---
 
 ### fs
 
-folder_size: Calculate the current folder size (using du or ncdu)  
+**folder_size:** Calculate the current folder size (using du or ncdu)  
  
 ---
  
 ### git
 
-commit: Add all files and then a commit
+**commit:** Add all files and then a commit
 
-fix: Fix the current branch and create a Pull Request (use with start-issue)
+**fix:** Fix the current branch and create a Pull Request (use with start-issue)
 
-pretty-diff: Show a pretty git diff using fzf (and copy selected path to the clipboard)
+**pretty-diff:** Show a pretty git diff using fzf (and copy selected path to the clipboard)
 
-pretty-log: Git log filtering
+**pretty-log:** Git log filtering
 
-start-issue: Create a branch with the format issue_$PARAM1 (useful with fix) 
+**start-issue:** Create a branch with the format issue_$PARAM1 (useful with fix) 
 
-ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
+**ui:** Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
 ---
 
 ### Github
 
-🚀&nbsp; trigger-action: Launch an action manually
+🚀&nbsp; **trigger-action:** Launch an action manually
 
-🎃&nbsp; actions: Open the github actions page of the current project
+🎃&nbsp; **actions:** Open the github actions page of the current project
   
 ---
            
 ### mac
 
-🥶&nbsp; bluetooth: On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
+🥶&nbsp; **bluetooth:** On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
 
-🚀&nbsp; browser_goto: Select between the opened chrome tabs using [choose](https://github.com/chipsenkbeil/choose)
+🚀&nbsp; **browser_goto:** Select between the opened chrome tabs using [choose](https://github.com/chipsenkbeil/choose)
 
-🙈&nbsp; hidden_files: Show/Hide hidden files
+🙈&nbsp; **hidden_files:** Show/Hide hidden files
 
-🔇&nbsp; not_disturb: Enter/Exit not disturb mode
+🔇&nbsp; **not_disturb:** Enter/Exit not disturb mode
 
-📶&nbsp; wifi:
+📶&nbsp; **wifi:**
         * On/Off Wifi
         * dhcp: Renew DHCP Lease
         * password: Get password of the current wifi 
@@ -127,15 +127,15 @@ ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
     
 ### network
 
-📡&nbsp; ip: Get the local (-l) or public ip
+📡&nbsp; **ip:** Get the local (-l) or public ip
 
-🔌&nbsp; ports: List of used ports
+🔌&nbsp; **ports:** List of used ports
 
-🐌&nbsp; speed: Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
+🐌&nbsp; **speed:** Internet connection speed test using [fast-cli](https://github.com/sindresorhus/fast-cli)
 
-🏹&nbsp; fetch: Http request using [httpie](https://httpie.org/)
+🏹&nbsp; **fetch:** Http request using [httpie](https://httpie.org/)
 
-🧪️&nbsp; usage: Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
+🧪️&nbsp; **usage:** Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
 
 ---
     
