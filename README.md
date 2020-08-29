@@ -104,19 +104,19 @@ utilsh_PATH=~/utils/utilsh
     
 ### Self scripts (self)
 
-🤳 **update**: Update utilsh repo
+🤳&nbsp; **update**: Update utilsh repo
          
 ### Shell scrips and utils (shell)
 
-🔶&nbsp;**args**: Arguments control
+🔶&nbsp; **args**: Arguments control
 
-⁉️&nbsp;**assert**: Assertion methods
+⁉️&nbsp; **assert**: Assertion methods
 
-👩‍💻&nbsp;**development**: Scripts related with development
+👩‍💻&nbsp; **development**: Scripts related with development
 
     - **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
 
-📜&nbsp;**docs**: script documentation scripts
+📜&nbsp; **docs**: script documentation scripts
 
 🎋&nbsp; **git**: Git scripts, get current branch, etc.
 
