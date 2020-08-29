@@ -24,7 +24,7 @@
   - [🍎 mac](#-mac)
   - [🌍 network](#-network)
   - [🤳 self](#-self)
-  - [shell](#shell)
+  - [🧰  shell](#%F0%9F%A7%B0--shell)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
