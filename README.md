@@ -16,13 +16,13 @@
 - [Manual Install](#manual-install)
 - [Update](#update)
 - [List of tools](#list-of-tools)
-  - [👩‍💻 code](#%E2%80%8D-code)
-  - [🐳 docker](#-docker)
-  - [📂 fs](#-fs)
-  - [🎋 git](#-git)
-  - [🐙 Github](#-github)
-  - [🍎 mac](#-mac)
-  - [🌍 network](#-network)
+  - [code](#code)
+  - [docker](#docker)
+  - [fs](#fs)
+  - [git](#git)
+  - [Github](#github)
+  - [mac](#mac)
+  - [network](#network)
   - [Self scripts (self)](#self-scripts-self)
   - [Shell scrips and utils (shell)](#shell-scrips-and-utils-shell)
 
@@ -60,9 +60,9 @@ utilsh_PATH=~/utils/utilsh
 
 ## List of tools
 
-### 👩‍💻 code
+### code
 
-tokei: Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
+👩‍💻&nbsp; tokei: Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
 
 grex: Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
 
@@ -70,20 +70,20 @@ doctoc: Generates table of contents for markdown files inside local git reposito
     
 ---
 
-### 🐳 docker
+### docker
 
-ctop: Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
-lazydocker: A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
+🐳&nbsp; ctop: Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
+🐳&nbsp; lazydocker: A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 ---
 
-### 📂 fs
+### fs
 
 folder_size: Calculate the current folder size (using du or ncdu)  
  
 ---
  
-### 🎋 git
+### git
 
 commit: Add all files and then a commit
 
@@ -99,7 +99,7 @@ ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
 ---
 
-### 🐙 Github
+### Github
 
 🚀&nbsp; trigger-action: Launch an action manually
 
@@ -107,7 +107,7 @@ ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
   
 ---
            
-### 🍎 mac
+### mac
 
 🥶&nbsp; bluetooth: On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
 
@@ -124,7 +124,7 @@ ui: Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
 ---    
     
-### 🌍 network
+### network
 
 📡&nbsp; ip: Get the local (-l) or public ip
 
