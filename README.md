@@ -103,7 +103,6 @@ utilsh_PATH=~/utils/utilsh
     * 🧪 usage: Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
     
 ### Self scripts (self)
-
 🤳 Self scripts
 
 - 🤦‍♂️ update: Update utilsh repo
