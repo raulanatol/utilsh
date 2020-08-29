@@ -23,8 +23,8 @@
   - [🐙 Github](#-github)
   - [🍎 mac](#-mac)
   - [🌍 network](#-network)
-  - [🤳 self](#-self)
-  - [Shell scrips and utils (🧰)](#shell-scrips-and-utils-%F0%9F%A7%B0)
+  - [Self scripts (self)](#self-scripts-self)
+  - [Shell scrips and utils (shell)](#shell-scrips-and-utils-shell)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
