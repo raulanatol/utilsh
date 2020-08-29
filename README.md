@@ -108,20 +108,20 @@ utilsh_PATH=~/utils/utilsh
          
 ### Shell scrips and utils (shell)
 
-🔶 **args**: Arguments control
+🔶&nbsp;**args**: Arguments control
 
-⁉️ **assert**: Assertion methods
+⁉️&nbsp;**assert**: Assertion methods
 
-👩‍💻 **development**: Scripts related with development
+👩‍💻&nbsp;**development**: Scripts related with development
 
     - **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
 
-📜 **docs**: script documentation scripts
+📜&nbsp;**docs**: script documentation scripts
 
-🎋 **git**: Git scripts, get current branch, etc.
+🎋&nbsp; **git**: Git scripts, get current branch, etc.
 
-👾 **os**: OS shell utils
+👾&nbsp; **os**: OS shell utils
 
-🎨 **sout**: Console out functions
+🎨&nbsp; **sout**: Console out functions
 
-💹 **string**: String manipulation scripts
+💹&nbsp; **string**: String manipulation scripts
