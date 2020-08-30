@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/docs"
+
+##? 📦 new_finish_release: Generate the initial finish-release
+##?  file in your project
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    new_makefile
+##?    new_makefile npm
+
+docs::help "$@"
+
+if [ -f ".scripts/finish-release" ]; then
+  sout::error "A finish-release found! If you continue this file be removed"
+  if [[ $(sout::sure_question "Do you want continue? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+fi
+
+mkdir -p .scripts
+
+VERSION="${1:-base}"
+case "$VERSION" in
+  "npm")
+    cp "$UTILSH_PATH/templates/code/finish_release/finish-release-npm" ./.scripts/finish-release
+    chmod +x ./.scripts/finish-release
+    ;;
+  *)
+    cp "$UTILSH_PATH/templates/code/finish_release/finish-release-base" ./.scripts/finish-release
+    chmod +x ./.scripts/finish-release
+    ;;
+esac
+
+sout::success Enjoy!

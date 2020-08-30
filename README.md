@@ -62,11 +62,15 @@ utilsh_PATH=~/utils/utilsh
 
 ### code
 
-👩‍💻&nbsp; **tokei:** Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
+**doctoc:** Generates table of contents for markdown files inside local git repository [DocToc](https://github.com/thlorenz/doctoc)
 
 **grex:** Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
 
-**doctoc:** Generates table of contents for markdown files inside local git repository [DocToc](https://github.com/thlorenz/doctoc)
+📦&nbsp; **new_finish_release:** Generate the initial finish-release file in your project
+
+😇&nbsp; **new_makefile:** Generate the initial makefile in your project
+
+👩‍💻&nbsp; **tokei:** Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
     
 ---
 
