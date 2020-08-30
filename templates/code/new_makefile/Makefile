@@ -12,6 +12,10 @@ build:
 check: test build
 	@echo "✅"
 
+docs:
+	@doctoc .
+	@echo "📚 Documentation ready!"
+
 release_patch: release
 
 release_minor: check

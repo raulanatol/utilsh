@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/docs"
+
+##? 🧲 create_workflow: Generate a Github Workflow file in your project
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    create_workflow release
+
+docs::help "$@"
+
+mkdir -p .github/workflows
+
+WORKFLOW="${1:-release}"
+SOURCE=""
+DESTINATION=""
+case "$WORKFLOW" in
+  "release")
+    DESTINATION="./.github/workflows/release.yml"
+    SOURCE="$UTILSH_PATH/templates/workflows/release.yml"
+    ;;
+  *)
+    sout::error "Invalid workflow"
+    exit 1
+    ;;
+esac
+
+if [ -f "$DESTINATION" ]; then
+  sout::error "A workflows found! If you continue this file be removed"
+  if [[ $(sout::sure_question "Do you want continue? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+fi
+
+cp "$SOURCE" "$DESTINATION"
+
+sout::success Enjoy!
