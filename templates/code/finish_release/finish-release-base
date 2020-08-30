@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+set -eu
+
+function error() {
+  echo "🚨 Error: $1"
+  exit 1
+}
+
+function change_version() {
+  local current_version="0.0.0"
+  if [[ -f version ]]; then
+    current_version=$(cat version)
+  fi
+  IFS=. read -r major minor patch <<<"$current_version"
+
+  case "$VERSION_PARAM" in
+  "PATCH")
+    ((patch++))
+    ;;
+  "MINOR")
+    patch=0
+    ((minor++))
+    ;;
+  "MAJOR")
+    minor=0
+    patch=0
+    ((major++))
+    ;;
+  *)
+    error "Invalid INCREASE word use: 'major' | 'minor' | 'patch'"
+    exit 1
+    ;;
+  esac
+
+  echo "$major"."$minor"."$patch" >version
+}
+
+if [[ $# != 1 ]]; then
+  error "Please specify the version to release patch | minor | major"
+fi
+
+VERSION_PARAM=$(echo "$1" | tr [a-z] [A-Z])
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+NEW_VERSION=$(change_version)
+
+function verify_master_branch() {
+  if [[ ${BRANCH} != 'master' ]]; then
+    error "Invalid branch name ${BRANCH}"
+  fi
+}
+
+function verify_uncommitted_changes() {
+  if [[ $(git status --porcelain) ]]; then
+    error "There are uncommitted changes in the working tree."
+  fi
+}
+
+function publish() {
+  git commit -am "Close version $NEW_VERSION"
+  git tag "v$NEW_VERSION" -m "$NEW_VERSION"
+  git push origin --tags
+}
+
+verify_uncommitted_changes
+verify_master_branch
+change_version
+make check
+publish
+echo "📦✅"
