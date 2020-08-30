@@ -106,9 +106,11 @@ utilsh_PATH=~/utils/utilsh
 
 ### Github
 
-🚀&nbsp; **trigger-action:** Launch an action manually
-
 🎃&nbsp; **actions:** Open the github actions page of the current project
+
+🧲&nbsp; **create_workflow:** Generate a Github Workflow file in your project
+
+🚀&nbsp; **trigger-action:** Launch an action manually
   
 ---
            
