@@ -90,17 +90,19 @@ utilsh_PATH=~/utils/utilsh
  
 ### git
 
-**commit:** Add all files and then a commit
+🔖&nbsp; **commit:** Add all files and then a commit
 
-**fix:** Fix the current branch and create a Pull Request (use with start-issue)
+🧹&nbsp; **delete-merged:** Delete all branches that have been merged in remote
 
-**pretty-diff:** Show a pretty git diff using fzf (and copy selected path to the clipboard)
+🔧&nbsp; **fix:** Fix the current branch and create a Pull Request (use with start-issue)
 
-**pretty-log:** Git log filtering
+💄&nbsp; **pretty-diff:** Show a pretty git diff using fzf (and copy selected path to the clipboard)
 
-**start-issue:** Create a branch with the format issue_$PARAM1 (useful with fix) 
+🖲&nbsp; **pretty-log:** Git log filtering
 
-**ui:** Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
+🚩&nbsp; **start-issue:** Create a branch with the format issue_$PARAM1 (useful with fix) 
+
+🍥&nbsp; **ui:** Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
 ---
 
