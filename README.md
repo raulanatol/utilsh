@@ -96,6 +96,8 @@ utilsh_PATH=~/utils/utilsh
 
 🔧&nbsp; **fix:** Fix the current branch and create a Pull Request (use with start-issue)
 
+🕴&nbsp; **jump:** Git Branches Helper using [git-jump](https://github.com/mykolaharmash/git-jump)
+
 💄&nbsp; **pretty-diff:** Show a pretty git diff using fzf (and copy selected path to the clipboard)
 
 🖲&nbsp; **pretty-log:** Git log filtering
