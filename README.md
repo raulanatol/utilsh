@@ -76,6 +76,8 @@ utilsh_PATH=~/utils/utilsh
 
 ### docker
 
+🔌&nbsp; **connect:** execute a ssh command over a running container
+
 🐳&nbsp; **ctop:** Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
 
 🐳&nbsp; **lazydocker:** A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
