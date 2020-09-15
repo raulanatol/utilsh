@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+
+##? 🔌 execute a ssh command over a running container
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    connect
+
+docs::help "$@"
+
+if docker ps >/dev/null 2>&1; then
+  container=$(docker ps | awk '{if (NR!=1) print "[" $1 "]" "\t" $2 "\t" $(NF)}' | fzf)
+
+  if [[ -n $container ]]; then
+    container_id=$(echo "$container" | awk -F "]" '{print substr($1, 2)}')
+    docker exec -it "$container_id" /bin/bash || docker exec -it "$container_id" /bin/sh
+  else
+    sout::error "You haven't selected any container! 🐳😿"
+  fi
+else
+  sout::error "Docker daemon is not running! 🐳😿"
+fi
