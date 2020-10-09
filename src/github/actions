@@ -2,8 +2,8 @@
 
 set -uo pipefail
 
-source "$UTILSH_PATH/src/shell/sout.sh"
-source "$UTILSH_PATH/src/shell/git.sh"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/git"
 
 ##? 🎃 Open the github actions page of the current project
 ##?
