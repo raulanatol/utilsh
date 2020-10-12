@@ -40,3 +40,12 @@ git::get_remote_https_url() {
   http_remote_url=$(echo "$http_remote_url" | sed -e 's/\.git/\//')
   echo "${http_remote_url}"
 }
+
+git::has_master_branch() {
+  git branch -a | grep master
+}
+
+git::has_main_branch() {
+  git branch -a | grep main
+}
+
