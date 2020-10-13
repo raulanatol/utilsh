@@ -55,3 +55,4 @@ if [[ $(sout::sure_question "Are you changed the default branch? (y/*)") != "Y" 
 fi
 
 git push origin --delete master
+sout::info "👌 done!"
