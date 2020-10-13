@@ -116,6 +116,8 @@ utilsh_PATH=~/utils/utilsh
 
 🧲&nbsp; **create_workflow:** Generate a Github Workflow file in your project
 
+🖤&nbsp; **to-main:** Move github default branch from master to main
+
 🚀&nbsp; **trigger-action:** Launch an action manually
   
 ---
