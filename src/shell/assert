@@ -51,3 +51,11 @@ assert::git::on_master() {
     exit 1
   fi
 }
+
+assert::git::on_main() {
+  on_error=${1:-Not in the main branch}
+  if [[ $(git::current_branch) != "main" ]]; then
+    sout::error "$on_error"
+    exit 1
+  fi
+}
