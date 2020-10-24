@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/git"
+
+##? 🖤 Move github default branch from master to main
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    to-main
+
+docs::help "$@"
+
+if (! git::is_in_repo); then
+  sout::error "Not in a git repo!"
+  exit 0
+fi
+
+if ! (git::has_remote); then
+  sout::error "Not remote found"
+  exit 1
+fi
+
+REMOTE_URL=$(git remote get-url origin)
+if [ -z "$REMOTE_URL" ]; then
+  sout::error "No remote found"
+  exit 0
+fi
+
+if ! (git::has_master_branch); then
+  sout::error "No master branch found"
+  exit 1
+fi
+
+if (git::has_main_branch); then
+  sout::error "Main branch found"
+  exit 1
+fi
+
+git branch -m master main
+git push -u origin main
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+
+sout::info "🔔🔔🔔 Change default branch"
+HTTP_REMOTE_URL=$(echo "$REMOTE_URL" | sed -e 's/git@github.com:/https:\/\/github.com\//')
+HTTP_REMOTE_URL=$(echo "$HTTP_REMOTE_URL" | sed -e 's/\.git/\/settings\/branches/')
+open "$HTTP_REMOTE_URL"
+
+if [[ $(sout::sure_question "Are you changed the default branch? (y/*)") != "Y" ]]; then
+  exit 1
+fi
+
+git push origin --delete master
+sout::info "👌 done!"
