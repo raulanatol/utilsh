@@ -16,7 +16,7 @@ docs::help "$@"
 
 sout::info " ♻️️  Updating utilsh"
 cd "$UTILSH_PATH"
-git checkout master
+git checkout main
 git pull
 
 sout::info " 👌 Done!"

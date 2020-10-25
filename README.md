@@ -32,7 +32,7 @@
 ## Install
 
 ```shell script
-bash <(curl -s https://raw.githubusercontent.com/raulanatol/utilsh/master/installer)
+bash <(curl -s https://raw.githubusercontent.com/raulanatol/utilsh/main/installer)
 ```
 
 ## Manual Install 

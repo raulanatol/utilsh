@@ -45,8 +45,8 @@ fi
 VERSION_PARAM=$(echo "$1" | tr [a-z] [A-Z])
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-function verify_master_branch() {
-  if [[ ${BRANCH} != 'master' ]]; then
+function verify_main_branch() {
+  if [[ ${BRANCH} != 'main' ]]; then
     error "Invalid branch name ${BRANCH}"
   fi
 }
@@ -64,7 +64,7 @@ function publish() {
 }
 
 verify_uncommitted_changes
-verify_master_branch
+verify_main_branch
 change_version
 make check
 publish
