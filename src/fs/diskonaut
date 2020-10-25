@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+##? 🗃 Terminal disk space navigator
+##?
+##? diskonaut scans the given path and indexes its
+##? metadata to allow explore its content.
+##?
+##? Using: https://github.com/imsnif/diskonaut
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    diskonaut
+
+docs::help "$@"
+
+install_diskonaut() {
+  if os::is_macos; then
+    brew install diskonaut
+  fi
+}
+
+if ! [ -x "$(command -v diskonaut)" ]; then
+  sout::error "This command needs diskonaut (https://github.com/imsnif/diskonaut) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_diskonaut
+fi
+
+diskonaut

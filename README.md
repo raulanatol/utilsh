@@ -86,7 +86,9 @@ utilsh_PATH=~/utils/utilsh
 
 ### fs
 
-**folder_size:** Calculate the current folder size (using du or ncdu)  
+🗃&nbsp; **diskonaut:** Terminal disk space navigator (using diskonaut)
+
+⚖&nbsp; **folder_size:** Calculate the current folder size (using du or ncdu)  
  
 ---
  
@@ -168,7 +170,7 @@ utilsh_PATH=~/utils/utilsh
 
 👩‍💻&nbsp; **development**: Scripts related with development
 
-- **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
+🏷&nbsp; **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
 
 📜&nbsp; **docs**: script documentation scripts
 
