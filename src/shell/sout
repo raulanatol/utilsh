@@ -20,7 +20,11 @@ sout::success() {
 sout::sure_question() {
   read -p "$1" yn
   case $yn in
-  [Yy]*) echo "Y" ;;
-  *) echo "N" ;;
+    [Yy]*) echo "Y" ;;
+    *) echo "N" ;;
   esac
+}
+
+sout::set_terminal_title() {
+  echo -en "\e]2;$*\a"
 }
