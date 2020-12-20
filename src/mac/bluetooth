@@ -8,7 +8,7 @@ source "$UTILSH_PATH/src/shell/docs"
 
 docs::help "$@"
 
-##? Execute all scripts inside this dotfiles.
+##? Execute all scripts inside this script.
 
 ACTION=$(string::to_lowercase "$1")
 

@@ -181,3 +181,12 @@ utilsh_PATH=~/utils/utilsh
 🎨&nbsp; **sout**: Console out functions
 
 💹&nbsp; **string**: String manipulation scripts
+
+## Completion
+
+_dot contains the completion script with all the tools
+
+### More info: 
+- http://zsh.sourceforge.net/Doc/Release/Completion-System.html 
+- https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html
+- https://github.com/zsh-users/zsh-completions
