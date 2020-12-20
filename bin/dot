@@ -4,7 +4,7 @@ set -euo pipefail
 
 source "$UTILSH_PATH/src/shell/args"
 
-##? Execute all scripts inside this dotfiles. Inspired by denisidoro/dotfiles.
+##? Execute all scripts inside this utilsh. Inspired by denisidoro/dotfiles.
 #?? 1.0.0
 ##?
 ##? Usage:

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-source "$DOTFILES_PATH/scripts/core/main.sh"
+source "$UTILSH_PATH/src/shell/docs"
 
 ##? Git log filtering
 #?? 1.0.0
@@ -10,7 +10,7 @@ source "$DOTFILES_PATH/scripts/core/main.sh"
 ##? Usage:
 ##?    pretty-log
 
-docs::eval_zsh "$0" "$@"
+docs::help "$0" "$@"
 
 commit=$(
   git log --graph \
