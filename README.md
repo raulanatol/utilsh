@@ -25,9 +25,10 @@
   - [network](#network)
   - [Self scripts (self)](#self-scripts-self)
   - [Shell scrips and utils (shell)](#shell-scrips-and-utils-shell)
+- [Completion](#completion)
+  - [More info:](#more-info)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 ## Install
 
@@ -35,7 +36,7 @@
 bash <(curl -s https://raw.githubusercontent.com/raulanatol/utilsh/main/installer)
 ```
 
-## Manual Install 
+## Manual Install
 
 - Clone this repository
 
@@ -47,6 +48,7 @@ utilsh_PATH=~/utils/utilsh
 ```
 
 - Use me!
+
 ```shell script
 ./$UTILSH_PATH/help
 ```
@@ -57,20 +59,22 @@ utilsh_PATH=~/utils/utilsh
 ./$UTILSH_PATH/src/update
 ```
 
-
 ## List of tools
 
 ### code
 
-**doctoc:** Generates table of contents for markdown files inside local git repository [DocToc](https://github.com/thlorenz/doctoc)
+**doctoc:** Generates table of contents for markdown files inside local git
+repository [DocToc](https://github.com/thlorenz/doctoc)
 
-**grex:** Grex is a command-line tool and library for generating regular expressions [grex](https://github.com/pemistahl/grex)
+**grex:** Grex is a command-line tool and library for generating regular
+expressions [grex](https://github.com/pemistahl/grex)
 
 📦&nbsp; **new_finish_release:** Generate the initial finish-release file in your project
 
 😇&nbsp; **new_makefile:** Generate the initial makefile in your project
 
-👩‍💻&nbsp; **tokei:** Tokei is a program that displays statistics about your code using [tokei](https://github.com/XAMPPRocky/tokei)
+👩‍💻&nbsp; **tokei:** Tokei is a program that displays statistics about your code
+using [tokei](https://github.com/XAMPPRocky/tokei)
     
 ---
 
@@ -80,7 +84,8 @@ utilsh_PATH=~/utils/utilsh
 
 🐳&nbsp; **ctop:** Top-like interface for container metrics (using [ctop](https://github.com/bcicen/ctop))
 
-🐳&nbsp; **lazydocker:** A simple terminal UI for both docker and docker-compose, written in Go with the gocui library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
+🐳&nbsp; **lazydocker:** A simple terminal UI for both docker and docker-compose, written in Go with the gocui
+library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 ---
 
@@ -88,10 +93,10 @@ utilsh_PATH=~/utils/utilsh
 
 🗃&nbsp; **diskonaut:** Terminal disk space navigator (using diskonaut)
 
-⚖&nbsp; **folder_size:** Calculate the current folder size (using du or ncdu)  
+⚖&nbsp; **folder_size:** Calculate the current folder size (using du or ncdu)
  
 ---
- 
+
 ### git
 
 🔖&nbsp; **commit:** Add all files and then a commit
@@ -106,7 +111,7 @@ utilsh_PATH=~/utils/utilsh
 
 🖲&nbsp; **pretty-log:** Git log filtering
 
-🚩&nbsp; **start-issue:** Create a branch with the format issue_$PARAM1 (useful with fix) 
+🚩&nbsp; **start-issue:** Create a branch with the format issue_$PARAM1 (useful with fix)
 
 🍥&nbsp; **ui:** Git terminal ui using [gitui](https://github.com/extrawurst/gitui)
 
@@ -123,7 +128,7 @@ utilsh_PATH=~/utils/utilsh
 🚀&nbsp; **trigger-action:** Launch an action manually
   
 ---
-           
+
 ### mac
 
 🥶&nbsp; **bluetooth:** On/Off bluetooth using [blueutil](http://www.frederikseiffert.de/blueutil/)
@@ -135,13 +140,11 @@ utilsh_PATH=~/utils/utilsh
 🔇&nbsp; **not_disturb:** Enter/Exit not disturb mode
 
 📶&nbsp; **wifi:**
-        * On/Off Wifi
-        * dhcp: Renew DHCP Lease
-        * password: Get password of the current wifi 
-🥵&nbsp; **powermetrics:** Show the temperature 
+* On/Off Wifi * dhcp: Renew DHCP Lease * password: Get password of the current wifi 🥵&nbsp; **powermetrics:** Show the
+temperature
 
 ---    
-    
+
 ### network
 
 📡&nbsp; **ip:** Get the local (-l) or public ip
@@ -152,16 +155,17 @@ utilsh_PATH=~/utils/utilsh
 
 🏹&nbsp; **fetch:** Http request using [httpie](https://httpie.org/)
 
-🧪️&nbsp; **usage:** Monitoring the current network utilization by process, connection and remote IP/hostname using [bandwhich](https://github.com/imsnif/bandwhich)
+🧪️&nbsp; **usage:** Monitoring the current network utilization by process, connection and remote IP/hostname
+using [bandwhich](https://github.com/imsnif/bandwhich)
 
 ---
-    
+
 ### Self scripts (self)
 
 🤳&nbsp; **update**: Update utilsh repo
 
 ---
-         
+
 ### Shell scrips and utils (shell)
 
 🔶&nbsp; **args**: Arguments control
@@ -170,13 +174,16 @@ utilsh_PATH=~/utils/utilsh
 
 👩‍💻&nbsp; **development**: Scripts related with development
 
-🏷&nbsp; **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (major|minor|patch) 
+🏷&nbsp; **increase_semversion**: Generate the next version based on [Semantic Versioning](https://semver.org/) (
+major|minor|patch)
 
 📜&nbsp; **docs**: script documentation scripts
 
 🎋&nbsp; **git**: Git scripts, get current branch, etc.
 
 👾&nbsp; **os**: OS shell utils
+
+📈&nbsp; **performance**: Evaluate the zsh starting time.
 
 🎨&nbsp; **sout**: Console out functions
 
@@ -186,7 +193,8 @@ utilsh_PATH=~/utils/utilsh
 
 _dot contains the completion script with all the tools
 
-### More info: 
-- http://zsh.sourceforge.net/Doc/Release/Completion-System.html 
+### More info:
+
+- http://zsh.sourceforge.net/Doc/Release/Completion-System.html
 - https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html
 - https://github.com/zsh-users/zsh-completions
