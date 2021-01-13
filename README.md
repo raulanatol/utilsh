@@ -140,8 +140,16 @@ library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 🔇&nbsp; **not_disturb:** Enter/Exit not disturb mode
 
 📶&nbsp; **wifi:**
-* On/Off Wifi * dhcp: Renew DHCP Lease * password: Get password of the current wifi 🥵&nbsp; **powermetrics:** Show the
-temperature
+
+* On/Off Wifi
+* dhcp: Renew DHCP Lease
+* password: Get password of the current wifi
+
+🥵&nbsp; **powermetrics:** Show the temperature
+
+📟&nbsp; **zoom:**
+
+* start: Start your personal meeting
 
 ---    
 
