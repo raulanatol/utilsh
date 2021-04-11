@@ -13,7 +13,7 @@ check: test build
 	@echo "✅"
 
 docs:
-	@doctoc .
+	@npx doctoc .
 	@echo "📚 Documentation ready!"
 
 release_patch: release
