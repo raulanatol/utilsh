@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/os"
+
+##? Liberating disk space from node_modules
+##?
+##? using [Autarky](https://github.com/pranshuchittora/autarky)
+##?
+#?? 1.0.0
+##?
+##? Usage:
+##?    autarky
+
+docs::help "$@"
+
+install_autarky() {
+  npm install -g autarky
+}
+
+if ! [ -x "$(command -v autarky)" ]; then
+  sout::error "This command needs autarky (https://github.com/pranshuchittora/autarky) install first"
+  if [[ $(sout::sure_question "Can you install it? (y/n)") != "Y" ]]; then
+    exit 1
+  fi
+
+  install_autarky
+fi
+autarky "$@"

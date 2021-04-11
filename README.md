@@ -11,7 +11,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Install](#install)
 - [Manual Install](#manual-install)
 - [Update](#update)
@@ -21,6 +20,7 @@
   - [fs](#fs)
   - [git](#git)
   - [Github](#github)
+  - [js](#js)
   - [mac](#mac)
   - [network](#network)
   - [Self scripts (self)](#self-scripts-self)
@@ -127,6 +127,12 @@ library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 🚀&nbsp; **trigger-action:** Launch an action manually
   
+---
+
+### js
+
+🛁&nbsp; **autarky:** Liberating disk space from node_modules using [autarky](https://github.com/pranshuchittora/autarky)
+
 ---
 
 ### mac
