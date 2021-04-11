@@ -8,7 +8,7 @@ source "$UTILSH_PATH/src/shell/development"
 
 assert::total_arguments $# 1 "Please specify the version increase: minor | major | patch"
 assert::git::not::has_changes
-assert::git::on_master
+assert::git::on_main
 
 BRANCH=$(git::current_branch)
 CURRENT_VERSION=$(cat version)

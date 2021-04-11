@@ -39,6 +39,7 @@ assert::is_valid_json() {
 assert::git::not::has_changes() {
   on_error=${1:-There are uncommitted changes in the working tree}
   if [[ $(git::has_changes) ]]; then
+    git status
     sout::error "$on_error"
     exit 1
   fi
