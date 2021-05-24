@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+source "$UTILSH_PATH/src/slack/slack_utils.sh"
+
+##? 🔇 Slack snooze actions
+##?
+##? Slack snooze API integration
+##?
+##? Using:
+##?   snooze workspace_name hours
+##?
+##? 1.0.0
+##?
+##? Usage:
+##?    snooze <workspace_name> <hours>
+
+docs::help "$@"
+
+if [ -z "$1" ]; then
+  sout::error "Need a workspace name"
+  exit 1
+fi
+
+WORKSPACE=$1
+HOURS=${2:-1}
+
+slack::focus_workspace "$WORKSPACE"
+slack::set_do_not_disturb "$HOURS"

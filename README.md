@@ -24,7 +24,8 @@
   - [mac](#mac)
   - [network](#network)
   - [Self scripts (self)](#self-scripts-self)
-  - [Shell scrips and utils (shell)](#shell-scrips-and-utils-shell)
+  - [Shell scripts and utils (shell)](#shell-scripts-and-utils-shell)
+  - [Slack scripts](#slack-scripts)
 - [Completion](#completion)
   - [More info:](#more-info)
 
@@ -131,7 +132,8 @@ library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 ### js
 
-🛁&nbsp; **autarky:** Liberating disk space from node_modules using [autarky](https://github.com/pranshuchittora/autarky)
+🛁&nbsp; **autarky:** Liberating disk space from node_modules
+using [autarky](https://github.com/pranshuchittora/autarky)
 
 ---
 
@@ -180,7 +182,7 @@ using [bandwhich](https://github.com/imsnif/bandwhich)
 
 ---
 
-### Shell scrips and utils (shell)
+### Shell scripts and utils (shell)
 
 🔶&nbsp; **args**: Arguments control
 
@@ -202,6 +204,14 @@ major|minor|patch)
 🎨&nbsp; **sout**: Console out functions
 
 💹&nbsp; **string**: String manipulation scripts
+
+### Slack scripts
+
+✅&nbsp; **active**: Slack active status
+
+👻&nbsp; **away**: Slack away status
+
+🔇&nbsp; **snooze**: Slack snooze actions
 
 ## Completion
 
