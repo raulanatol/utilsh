@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+source "$UTILSH_PATH/src/slack/slack_utils.sh"
+
+##? ✅ Slack active status
+##?
+##? Set slack active status
+##?
+##? Using:
+##?   active workspace_name
+##?
+##? 1.0.0
+##?
+##? Usage:
+##?    active <workspace_name>
+
+docs::help "$@"
+
+if [ -z "$1" ]; then
+  sout::error "Need a workspace name"
+  exit 1
+fi
+
+WORKSPACE="$1"
+
+slack::focus_workspace "$WORKSPACE"
+slack::set_active
