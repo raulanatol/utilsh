@@ -20,6 +20,7 @@
   - [fs](#fs)
   - [git](#git)
   - [Github](#github)
+  - [irvue](#irvue)
   - [js](#js)
   - [mac](#mac)
   - [network](#network)
@@ -128,6 +129,12 @@ library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 🚀&nbsp; **trigger-action:** Launch an action manually
   
+---
+
+### irvue
+
+🖼&nbsp; **change:** Change the current wallpaper using [Irvue](https://irvue.tumblr.com/) app
+
 ---
 
 ### js
