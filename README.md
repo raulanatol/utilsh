@@ -205,6 +205,8 @@ major|minor|patch)
 
 💹&nbsp; **string**: String manipulation scripts
 
+---
+
 ### Slack scripts
 
 ✅&nbsp; **active**: Slack active status
@@ -212,6 +214,8 @@ major|minor|patch)
 👻&nbsp; **away**: Slack away status
 
 🔇&nbsp; **snooze**: Slack snooze actions
+
+---
 
 ## Completion
 
