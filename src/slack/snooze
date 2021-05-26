@@ -31,4 +31,5 @@ WORKSPACE=$1
 HOURS=${2:-1}
 
 slack::focus_workspace "$WORKSPACE"
+slack::open_channel "me"
 slack::set_do_not_disturb "$HOURS"

@@ -30,4 +30,5 @@ fi
 WORKSPACE="$1"
 
 slack::focus_workspace "$WORKSPACE"
+slack::open_channel "me"
 slack::set_active
