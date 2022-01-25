@@ -15,20 +15,20 @@
 - [Manual Install](#manual-install)
 - [Update](#update)
 - [List of tools](#list-of-tools)
-  - [code](#code)
-  - [docker](#docker)
-  - [fs](#fs)
-  - [git](#git)
-  - [Github](#github)
-  - [irvue](#irvue)
-  - [js](#js)
-  - [mac](#mac)
-  - [network](#network)
-  - [Self scripts (self)](#self-scripts-self)
-  - [Shell scripts and utils (shell)](#shell-scripts-and-utils-shell)
-  - [Slack scripts](#slack-scripts)
+    - [code](#code)
+    - [docker](#docker)
+    - [fs](#fs)
+    - [git](#git)
+    - [Github](#github)
+    - [irvue](#irvue)
+    - [js](#js)
+    - [mac](#mac)
+    - [network](#network)
+    - [Self scripts (self)](#self-scripts-self)
+    - [Shell scripts and utils (shell)](#shell-scripts-and-utils-shell)
+    - [Slack scripts](#slack-scripts)
 - [Completion](#completion)
-  - [More info:](#more-info)
+    - [More info:](#more-info)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -221,6 +221,8 @@ major|minor|patch)
 👻&nbsp; **away**: Slack away status
 
 🔇&nbsp; **snooze**: Slack snooze actions
+
+📝&nbsp; **status**: Slack set status
 
 ---
 

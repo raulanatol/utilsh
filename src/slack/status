@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/os"
+
+source "$UTILSH_PATH/src/slack/slack_utils.sh"
+
+##? 📝 Slack set status
+##?
+##? Slack set status
+##?
+##? Using:
+##?   status text emoji expiration
+##?
+##? 1.0.0
+##?
+##? Usage:
+##?    status <text> <emoji> <expiration>
+
+docs::help "$@"
+
+if [ -z "$SLACK_STATUS_APP_AUTH_CODE" ]; then
+  sout::error "No Slack Auth code provided"
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  sout::error "Need a text"
+  exit 1
+fi
+
+if [ -z "$2" ]; then
+  sout::error "Need a emoji"
+  exit 1
+fi
+
+TEXT=$1
+EMOJI=$2
+EXPIRATION=${3:-0}
+
+curl --location --request POST 'https://slack.com/api/users.profile.set' \
+--header "Authorization: Bearer $SLACK_STATUS_APP_AUTH_CODE" \
+--header 'Content-Type: application/json' \
+--data-raw "{
+    \"profile\": {
+        \"status_text\": \"$TEXT\",
+        \"status_emoji\": \"$EMOJI\",
+        \"status_expiration\": $EXPIRATION
+    }
+}"
