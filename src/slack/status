@@ -19,6 +19,7 @@ source "$UTILSH_PATH/src/slack/slack_utils.sh"
 ##?
 ##? Usage:
 ##?    status <text> <emoji> <expiration>
+##?    status "" ""
 
 docs::help "$@"
 
@@ -27,21 +28,11 @@ if [ -z "$SLACK_STATUS_APP_AUTH_CODE" ]; then
   exit 1
 fi
 
-if [ -z "$1" ]; then
-  sout::error "Need a text"
-  exit 1
-fi
-
-if [ -z "$2" ]; then
-  sout::error "Need a emoji"
-  exit 1
-fi
-
-TEXT=$1
-EMOJI=$2
+TEXT=${1:-""}
+EMOJI=${2:-""}
 EXPIRATION=${3:-0}
 
-curl --location --request POST 'https://slack.com/api/users.profile.set' \
+curl --location -s -o /dev/null --request POST 'https://slack.com/api/users.profile.set' \
 --header "Authorization: Bearer $SLACK_STATUS_APP_AUTH_CODE" \
 --header 'Content-Type: application/json' \
 --data-raw "{
