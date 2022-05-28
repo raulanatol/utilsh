@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$UTILSH_PATH/src/shell/sout"
+source "$UTILSH_PATH/src/shell/string"
+source "$UTILSH_PATH/src/shell/docs"
+source "$UTILSH_PATH/src/shell/assert"
+
+##? 📰 set_tab_title
+##?   * title: Set the tabs title
+#?? 1.0.0
+##?
+##? Usage:
+##?
+##?    set_tab_title <title>
+
+docs::help "$@"
+
+assert::total_arguments $# 1
+
+echo -e "\033]1;$1\007"

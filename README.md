@@ -137,6 +137,14 @@ library. (using [lazydocker](https://github.com/jesseduffield/lazydocker))
 
 ---
 
+### iterm2
+
+🏷&nbsp; **set_tab_title:** Change the current tab (iterm2) title
+
+🏷&nbsp; **set_window_title:** Change the current window (iterm2) title
+
+---
+
 ### js
 
 🛁&nbsp; **autarky:** Liberating disk space from node_modules
