@@ -1,7 +1,7 @@
-import { Command } from 'commander';
-import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import path from 'path';
+import { Command } from 'commander';
 
 const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
@@ -34,7 +34,7 @@ export class PluginManager {
       // Detectar plugins instalados
       const detected = this.detectInstalledPlugins();
       const initialConfig: UtilshConfig = { plugins: {} };
-      detected.forEach((plugin) => {
+      detected.forEach(plugin => {
         initialConfig.plugins[plugin] = { enabled: true };
       });
       fs.writeFileSync(CONFIG_PATH, JSON.stringify(initialConfig, null, 2));
@@ -44,12 +44,12 @@ export class PluginManager {
   }
 
   private detectInstalledPlugins(): string[] {
-    const nodeModules = path.join(process.cwd(), 'node_modules', '@raulanator');
+    const nodeModules = path.join(process.cwd(), 'node_modules', '@raulanatol');
     if (!fs.existsSync(nodeModules)) return [];
     return fs
       .readdirSync(nodeModules)
-      .filter((name) => name.startsWith('plugin-'))
-      .map((name) => `@raulanator/${name}`);
+      .filter(name => name.startsWith('plugin-'))
+      .map(name => `@raulanatol/${name}`);
   }
 
   getConfig(): UtilshConfig {
@@ -70,10 +70,7 @@ export class PluginManager {
     return this.detectInstalledPlugins();
   }
 
-  addPlugin(
-    pluginName: string,
-    settings: PluginSettings = { enabled: true },
-  ): void {
+  addPlugin(pluginName: string, settings: PluginSettings = { enabled: true }): void {
     this.config.plugins[pluginName] = settings;
     this.saveConfig();
   }

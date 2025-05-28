@@ -1,5 +1,5 @@
 {
-  "name": "@raulanator/utilsh-plugin-help",
+  "name": "@raulanatol/utilsh-plugin-help",
   "version": "1.0.0",
   "description": "Help plugin for utilsh CLI",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "format:check": "prettier --check \"**/*.{ts,json}\""
   },
   "dependencies": {
-    "@raulanator/utilsh-core": "^1.0.0",
+    "@raulanatol/utilsh-core": "^1.0.0",
     "commander": "^12.0.0"
   }
 }

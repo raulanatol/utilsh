@@ -6,7 +6,7 @@ export default function helpPlugin(program: Command): void {
     .description('List all available plugins and commands')
     .action(() => {
       console.log('Available plugins:');
-      program.commands.forEach((cmd) => {
+      program.commands.forEach(cmd => {
         console.log(`  ${cmd.name()}: ${cmd.description()}`);
       });
     });

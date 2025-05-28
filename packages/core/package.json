@@ -1,5 +1,5 @@
 {
-  "name": "@raulanator/utilsh-core",
+  "name": "@raulanatol/utilsh-core",
   "version": "1.0.0",
   "description": "Core functionality for utilsh CLI",
   "main": "dist/index.js",

@@ -1,16 +1,13 @@
 #!/usr/bin/env node
-
 import { Command } from 'commander';
-import { PluginManager } from './plugin-manager';
 import inquirer from 'inquirer';
+
+import { PluginManager } from './plugin-manager';
 
 const program = new Command();
 const pluginManager = new PluginManager();
 
-program
-  .name('utilsh')
-  .description('CLI tool with plugin system')
-  .version('1.0.0');
+program.name('utilsh').description('CLI tool with plugin system').version('1.0.0');
 
 const pluginsCmd = program.command('plugins').description('Gestión de plugins');
 
@@ -23,7 +20,7 @@ pluginsCmd
       console.log('No hay plugins activos.');
     } else {
       console.log('Plugins activos:');
-      activos.forEach((p) => console.log('  -', p));
+      activos.forEach(p => console.log('  -', p));
     }
   });
 
@@ -36,15 +33,13 @@ pluginsCmd
       console.log('No hay plugins instalados.');
     } else {
       console.log('Plugins instalados:');
-      disponibles.forEach((p) => console.log('  -', p));
+      disponibles.forEach(p => console.log('  -', p));
     }
   });
 
 pluginsCmd
   .command('add <plugin> [settings]')
-  .description(
-    'Añadir un plugin al config. Puedes pasar settings como JSON o dejarlo vacío para modo interactivo.',
-  )
+  .description('Añadir un plugin al config. Puedes pasar settings como JSON o dejarlo vacío para modo interactivo.')
   .action(async (plugin, settings) => {
     let parsedSettings;
     if (settings) {
@@ -62,13 +57,14 @@ pluginsCmd
         {
           type: 'input',
           name: 'custom',
-          message:
-            '¿Quieres añadir algún setting extra? (key:value, vacío para omitir)',
-        },
+          message: '¿Quieres añadir algún setting extra? (key:value, vacío para omitir)'
+        }
       ]);
       if (answers.custom) {
         const [key, value] = answers.custom.split(':');
-        if (key && value) parsedSettings[key.trim()] = value.trim();
+        if (key && value) {
+          (parsedSettings as any)[key.trim()] = value.trim(); // eslint-disable-line @typescript-eslint/no-explicit-any
+        }
       }
     }
     pluginManager.addPlugin(plugin, parsedSettings);
@@ -78,12 +74,12 @@ pluginsCmd
 pluginsCmd
   .command('remove <plugin>')
   .description('Eliminar un plugin del config')
-  .action((plugin) => {
+  .action(plugin => {
     pluginManager.removePlugin(plugin);
     console.log(`Plugin ${plugin} eliminado del config.`);
   });
 
 // Registrar plugins activos
-pluginManager.loadPlugins(program);
+pluginManager.loadPlugins(program).catch(console.error);
 
 program.parse();
