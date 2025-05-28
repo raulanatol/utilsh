@@ -12,80 +12,72 @@ RED = \033[0;31m
 NC = \033[0m # No Color
 
 help:
-	@echo "${CYAN}Available commands:${NC}"
-	@echo "${GREEN}make install${NC}    - Install project dependencies"
-	@echo "${GREEN}make build${NC}      - Build TypeScript project"
-	@echo "${GREEN}make clean${NC}      - Clean generated files"
-	@echo "${GREEN}make test${NC}       - Run tests"
-	@echo "${GREEN}make lint${NC}       - Run linter"
-	@echo "${GREEN}make format${NC}     - Format code"
-	@echo "${GREEN}make dev${NC}        - Start development server"
-	@echo "${GREEN}make start${NC}      - Start production server"
+	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-# Dependencies installation
-init:
+init: ## Install project dependencies
 	@echo "${CYAN}Installing dependencies...${NC}"
 	npm ci
 
-# Project build
-build: check-style
+build: check-style ## Build project
 	@echo "${CYAN}Building project...${NC}"
 	$(NPM) run build
 	npm run lint
 
-# Clean
-clean:
+clean: ## Clean generated files
 	@echo "${CYAN}Cleaning generated files...${NC}"
 	rm -rf dist/
 	rm -rf node_modules/
 	rm -rf .cache/
 
-# Tests
-test:
+test: ## Run tests
 	@echo "${CYAN}Running tests...${NC}"
 	$(NPM) test
 
-# Linting
-lint:
+lint: ## Run linter
 	@echo "${CYAN}Running linter...${NC}"
 	$(NPM) run lint
 
-# Code formatting
-format:
+format: ## Format code
 	@echo "${CYAN}Formatting code...${NC}"
 	$(NPM) run format
 
-# Development
-dev:
+dev: ## Start development server
 	@echo "${CYAN}Starting development server...${NC}"
 	$(NPM) run dev
 
-# Production
-start:
+start: ## Start production server
 	@echo "${CYAN}Starting production server...${NC}"
 	NODE_ENV=production $(NPM) start
 
-# Dependencies update
-update-deps:
+update-deps: ## Update dependencies
 	@echo "${CYAN}Updating dependencies...${NC}"
 	$(NPM) update
 
-# Security check
-security-check:
+security-check: ## Check for security vulnerabilities
 	@echo "${CYAN}Checking for security vulnerabilities...${NC}"
 	$(NPM) audit
 
-# Documentation generation
-docs:
+docs: ## Generate documentation
 	@echo "${CYAN}Generating documentation...${NC}"
 	$(NPX) typedoc --out docs src/
 
-# Cache cleanup
-clean-cache:
+clean-cache: ## Clean cache
 	@echo "${CYAN}Cleaning cache...${NC}"
 	$(NPM) cache clean --force 
 
-check-style:
+check-style: ## Check code style
 	@echo "${CYAN}Checking code style...${NC}"
 	$(NPM) run format:check
 	$(NPM) run lint
+
+publish-major: ## Publish new major version
+	@echo "${CYAN}Publishing new major version...${NC}"
+	./scripts/publish.sh major
+
+publish-minor: ## Publish new minor version
+	@echo "${CYAN}Publishing new minor version...${NC}"
+	./scripts/publish.sh minor
+
+publish-patch: ## Publish new patch version
+	@echo "${CYAN}Publishing new patch version...${NC}"
+	./scripts/publish.sh patch
