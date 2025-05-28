@@ -1,7 +1,6 @@
 {
   "name": "@raulanatol/utilsh",
   "version": "1.0.1",
-  "private": true,
   "author": {
     "name": "Raúl Anatol",
     "email": "hello@raulanatol.com"
