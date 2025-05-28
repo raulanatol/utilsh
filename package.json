@@ -7,13 +7,13 @@
     "email": "hello@raulanatol.com"
   },
   "description": "CLI utility tool with plugin system",
-  "main": "dist/core/index.js",
+  "main": "dist/index.js",
   "bin": {
-    "utilsh": "./dist/core/index.js"
+    "utilsh": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/core/index.js",
+    "start": "node dist/index.js",
     "test": "vitest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,json}\"",

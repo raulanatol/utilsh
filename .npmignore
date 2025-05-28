@@ -1,0 +1,55 @@
+# Development files
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+*.log
+.DS_Store
+.nvmrc
+
+# Build and test files
+dist/
+coverage/
+.nyc_output/
+test/
+tests/
+__tests__/
+*.test.*
+*.spec.*
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Configuration files
+.eslintrc*
+.prettierrc*
+tsconfig.json
+jest.config.*
+.editorconfig
+.env*
+.npmrc
+
+# Development scripts
+scripts/
+Makefile
+*.sh
+
+# Cache and temporary files
+.cache/
+node_modules/
+.tmp/
+.temp/
+
+# Source maps
+*.map
+
+# TypeScript source files
+*.ts
+!*.d.ts
+
+# Other
+.husky/
+.lint-staged* 
