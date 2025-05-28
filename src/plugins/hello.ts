@@ -7,4 +7,4 @@ export const helloPlugin = (program: Command): void => {
     .action(() => {
       console.log('Hello, World!');
     });
-}; 
+};

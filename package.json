@@ -1,17 +1,24 @@
 {
-  "name": "utilsh",
+  "name": "@raulanator/utilsh",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Raúl Anatol",
+    "email": "hello@raulanatol.com"
+  },
   "workspaces": [
-    "packages/*",
+    "packages/core",
     "packages/plugins/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
-    "format": "prettier --write \"**/*.{ts,json}\"",
-    "prepare": "husky install"
+    "format": "npm run format --workspaces",
+    "format:check": "npm run format:check --workspaces",
+    "prepare": "husky",
+    "preinstall": "node scripts/check-node-version.js",
+    "dev": "ts-node src/index.ts"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

@@ -10,4 +10,4 @@ export default function helpPlugin(program: Command): void {
         console.log(`  ${cmd.name()}: ${cmd.description()}`);
       });
     });
-} 
+}

@@ -42,7 +42,9 @@ pluginsCmd
 
 pluginsCmd
   .command('add <plugin> [settings]')
-  .description('Añadir un plugin al config. Puedes pasar settings como JSON o dejarlo vacío para modo interactivo.')
+  .description(
+    'Añadir un plugin al config. Puedes pasar settings como JSON o dejarlo vacío para modo interactivo.',
+  )
   .action(async (plugin, settings) => {
     let parsedSettings;
     if (settings) {
@@ -60,7 +62,8 @@ pluginsCmd
         {
           type: 'input',
           name: 'custom',
-          message: '¿Quieres añadir algún setting extra? (key:value, vacío para omitir)',
+          message:
+            '¿Quieres añadir algún setting extra? (key:value, vacío para omitir)',
         },
       ]);
       if (answers.custom) {
@@ -83,4 +86,4 @@ pluginsCmd
 // Registrar plugins activos
 pluginManager.loadPlugins(program);
 
-program.parse(); 
+program.parse();

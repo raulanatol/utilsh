@@ -6,12 +6,12 @@ describe('Hello Plugin', () => {
   it('should print hello world message', () => {
     const program = new Command();
     const consoleSpy = vi.spyOn(console, 'log');
-    
+
     helloPlugin(program);
-    
+
     // Simular la ejecución del comando
     program.parse(['node', 'test', 'hello']);
-    
+
     expect(consoleSpy).toHaveBeenCalledWith('Hello, World!');
   });
-}); 
+});

@@ -13,4 +13,4 @@ program
 // Registrar plugins
 registerPlugins(program);
 
-program.parse(); 
+program.parse();

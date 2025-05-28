@@ -1,5 +1,5 @@
 {
-  "name": "@utilsh/plugin-help",
+  "name": "@raulanator/utilsh-plugin-help",
   "version": "1.0.0",
   "description": "Help plugin for utilsh CLI",
   "main": "dist/index.js",
@@ -7,10 +7,12 @@
     "build": "tsc",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,json}\""
   },
   "dependencies": {
-    "@utilsh/core": "^1.0.0",
+    "@raulanator/utilsh-core": "^1.0.0",
     "commander": "^12.0.0"
   }
-} 
+}

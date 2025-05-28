@@ -28,9 +28,10 @@ init:
 	npm ci
 
 # Project build
-build:
+build: check-style
 	@echo "${CYAN}Building project...${NC}"
 	$(NPM) run build
+	npm run lint
 
 # Clean
 clean:
@@ -83,3 +84,8 @@ docs:
 clean-cache:
 	@echo "${CYAN}Cleaning cache...${NC}"
 	$(NPM) cache clean --force 
+
+check-style:
+	@echo "${CYAN}Checking code style...${NC}"
+	$(NPM) run format:check
+	$(NPM) run lint

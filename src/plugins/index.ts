@@ -6,4 +6,4 @@ const plugins = [helpPlugin, helloPlugin];
 
 export function registerPlugins(program: Command): void {
   plugins.forEach((plugin) => plugin(program));
-} 
+}

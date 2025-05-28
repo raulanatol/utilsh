@@ -1,5 +1,4 @@
 import { Command } from 'commander';
-import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
@@ -9,7 +8,8 @@ const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 
 export interface PluginSettings {
   enabled: boolean;
-  [key: string]: any;
+
+  [key: string]: unknown;
 }
 
 export interface UtilshConfig {
@@ -19,7 +19,7 @@ export interface UtilshConfig {
 }
 
 export class PluginManager {
-  private plugins: Map<string, any> = new Map();
+  private plugins: Map<string, unknown> = new Map();
   private config: UtilshConfig;
 
   constructor() {
@@ -44,11 +44,12 @@ export class PluginManager {
   }
 
   private detectInstalledPlugins(): string[] {
-    const nodeModules = path.join(process.cwd(), 'node_modules', '@utilsh');
+    const nodeModules = path.join(process.cwd(), 'node_modules', '@raulanator');
     if (!fs.existsSync(nodeModules)) return [];
-    return fs.readdirSync(nodeModules)
+    return fs
+      .readdirSync(nodeModules)
       .filter((name) => name.startsWith('plugin-'))
-      .map((name) => `@utilsh/${name}`);
+      .map((name) => `@raulanator/${name}`);
   }
 
   getConfig(): UtilshConfig {
@@ -69,7 +70,10 @@ export class PluginManager {
     return this.detectInstalledPlugins();
   }
 
-  addPlugin(pluginName: string, settings: PluginSettings = { enabled: true }): void {
+  addPlugin(
+    pluginName: string,
+    settings: PluginSettings = { enabled: true },
+  ): void {
     this.config.plugins[pluginName] = settings;
     this.saveConfig();
   }
@@ -83,7 +87,7 @@ export class PluginManager {
     for (const [pluginName, settings] of Object.entries(this.config.plugins)) {
       if (!settings.enabled) continue;
       try {
-        const plugin = require(pluginName);
+        const plugin = await import(pluginName);
         if (typeof plugin.default === 'function') {
           plugin.default(program, settings);
           this.plugins.set(pluginName, plugin);
@@ -94,7 +98,7 @@ export class PluginManager {
     }
   }
 
-  getPlugins(): Map<string, any> {
+  getPlugins(): Map<string, unknown> {
     return this.plugins;
   }
-} 
+}
