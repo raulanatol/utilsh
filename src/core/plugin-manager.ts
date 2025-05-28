@@ -5,6 +5,7 @@ import { Command } from 'commander';
 
 const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
+const PLUGINS_DIR = path.join(process.cwd(), 'src', 'plugins');
 
 export interface PluginSettings {
   enabled: boolean;
@@ -44,12 +45,11 @@ export class PluginManager {
   }
 
   private detectInstalledPlugins(): string[] {
-    const nodeModules = path.join(process.cwd(), 'node_modules', '@raulanatol');
-    if (!fs.existsSync(nodeModules)) return [];
+    if (!fs.existsSync(PLUGINS_DIR)) return [];
     return fs
-      .readdirSync(nodeModules)
-      .filter(name => name.startsWith('plugin-'))
-      .map(name => `@raulanatol/${name}`);
+      .readdirSync(PLUGINS_DIR)
+      .filter(name => name.endsWith('.ts') || name.endsWith('.js'))
+      .map(name => path.join(PLUGINS_DIR, name));
   }
 
   getConfig(): UtilshConfig {

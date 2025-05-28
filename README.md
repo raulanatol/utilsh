@@ -1,52 +1,54 @@
 # @raulanatol/utilsh
 
-A monorepo containing utility packages and plugins for shell scripting and automation.
+A utility packages and plugins for shell scripting and automation.
 
-## Project Structure
+## 🚀 Quick Start
 
-The project is organized as a monorepo using npm workspaces:
+### Install package
+```bash
+npm install @raulanatol/utilsh
+```
+
+### Usage 
+
+```
+utilsh
+```
+
+## 📦 Project Structure
 
 ```
 .
-├── packages/          # Main packages
+├── packages/          # Core utility packages
 └── packages/plugins/  # Plugin packages
 ```
 
-## Prerequisites
+## ⚙️ Prerequisites
 
 - Node.js (version 24.1.0 - specified in .nvmrc)
 - npm (Latest version recommended)
 
-## Installation
+## 🛠️ Development
 
-```bash
-# Clone the repository
-git clone [repository-url]
-cd utilsh
+### Available Scripts
 
-# Install dependencies
-npm install
-```
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Build all packages |
+| `npm run test` | Run tests across all packages |
+| `npm run lint` | Run linting across all packages |
+| `npm run format` | Format code using Prettier |
 
-## Available Scripts
+### Development Stack
 
-- `npm run build` - Build all packages
-- `npm run test` - Run tests across all packages
-- `npm run lint` - Run linting across all packages
-- `npm run format` - Format code using Prettier
+- **TypeScript** - Type safety and modern JavaScript features
+- **ESLint** - Code linting and style enforcement
+- **Prettier** - Code formatting
+- **Vitest** - Fast and modern testing framework
+- **Husky** - Git hooks management
+- **lint-staged** - Pre-commit checks
 
-## Development
-
-This project uses several development tools:
-
-- TypeScript for type safety
-- ESLint for code linting
-- Prettier for code formatting
-- Vitest for testing
-- Husky for git hooks
-- lint-staged for pre-commit checks
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -54,11 +56,11 @@ This project uses several development tools:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+## 📝 License
 
 This project is private and proprietary.
 
-## Dependencies
+## 📦 Dependencies
 
 ### Development Dependencies
 - @types/node

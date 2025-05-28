@@ -2,44 +2,44 @@
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 
-import { PluginManager } from './plugin-manager';
+import { PluginManager } from './core/plugin-manager';
 
 const program = new Command();
 const pluginManager = new PluginManager();
 
 program.name('utilsh').description('CLI tool with plugin system').version('1.0.0');
 
-const pluginsCmd = program.command('plugins').description('Gestión de plugins');
+const pluginsCmd = program.command('plugins').description('Plugin management');
 
 pluginsCmd
   .command('list')
-  .description('Listar plugins activos (en config)')
+  .description('List active plugins (in config)')
   .action(() => {
-    const activos = pluginManager.getActivePlugins();
-    if (activos.length === 0) {
-      console.log('No hay plugins activos.');
+    const active = pluginManager.getActivePlugins();
+    if (active.length === 0) {
+      console.log('No active plugins.');
     } else {
-      console.log('Plugins activos:');
-      activos.forEach(p => console.log('  -', p));
+      console.log('Active plugins:');
+      active.forEach(p => console.log('  -', p));
     }
   });
 
 pluginsCmd
   .command('available')
-  .description('Listar plugins instalados en node_modules')
+  .description('List installed plugins in node_modules')
   .action(() => {
-    const disponibles = pluginManager.getAvailablePlugins();
-    if (disponibles.length === 0) {
-      console.log('No hay plugins instalados.');
+    const available = pluginManager.getAvailablePlugins();
+    if (available.length === 0) {
+      console.log('No plugins installed.');
     } else {
-      console.log('Plugins instalados:');
-      disponibles.forEach(p => console.log('  -', p));
+      console.log('Installed plugins:');
+      available.forEach(p => console.log('  -', p));
     }
   });
 
 pluginsCmd
   .command('add <plugin> [settings]')
-  .description('Añadir un plugin al config. Puedes pasar settings como JSON o dejarlo vacío para modo interactivo.')
+  .description('Add a plugin to config. You can pass settings as JSON or leave it empty for interactive mode.')
   .action(async (plugin, settings) => {
     let parsedSettings;
     if (settings) {
@@ -47,17 +47,17 @@ pluginsCmd
         parsedSettings = JSON.parse(settings);
         parsedSettings.enabled = true;
       } catch (e) {
-        console.error('El parámetro settings debe ser un JSON válido.');
+        console.error('The settings parameter must be valid JSON.');
         process.exit(1);
       }
     } else {
       parsedSettings = { enabled: true };
-      // Preguntar por settings extra
+      // Ask for extra settings
       const answers = await inquirer.prompt([
         {
           type: 'input',
           name: 'custom',
-          message: '¿Quieres añadir algún setting extra? (key:value, vacío para omitir)'
+          message: 'Do you want to add any extra settings? (key:value, empty to skip)'
         }
       ]);
       if (answers.custom) {
@@ -68,18 +68,18 @@ pluginsCmd
       }
     }
     pluginManager.addPlugin(plugin, parsedSettings);
-    console.log(`Plugin ${plugin} añadido y activado.`);
+    console.log(`Plugin ${plugin} added and enabled.`);
   });
 
 pluginsCmd
   .command('remove <plugin>')
-  .description('Eliminar un plugin del config')
+  .description('Remove a plugin from config')
   .action(plugin => {
     pluginManager.removePlugin(plugin);
-    console.log(`Plugin ${plugin} eliminado del config.`);
+    console.log(`Plugin ${plugin} removed from config.`);
   });
 
-// Registrar plugins activos
+// Register active plugins
 pluginManager.loadPlugins(program).catch(console.error);
 
 program.parse();
