@@ -39,7 +39,10 @@ export class Prompt {
       .description('List installed plugins')
       .action(() => {
         const available = this.#pluginManager.getAvailablePlugins();
-        available.forEach(p => console.log('  -', p));
+        available.forEach(plugin => {
+          const metadata = this.#pluginManager.getMetadataFrom(plugin);
+          console.log('- ', plugin, metadata ? `(${metadata.description})` : '');
+        });
       });
 
     pluginsCmd
