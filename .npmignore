@@ -32,10 +32,9 @@ jest.config.*
 .env*
 .npmrc
 
-# Development scripts
-scripts/
+# Scripts and tools
+scripts/publish.sh
 Makefile
-*.sh
 
 # Cache and temporary files
 .cache/
