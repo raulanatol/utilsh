@@ -18,7 +18,10 @@ init: ## Install project dependencies
 	@echo "${CYAN}Installing dependencies...${NC}"
 	npm ci
 
-build: check-style ## Build project
+main: check-style build ## Main target to run checks and build
+	@echo "${CYAN}Done ✅${NC}"
+
+build: ## Build project
 	@echo "${CYAN}Building project...${NC}"
 	$(NPM) run build
 	npm run lint
@@ -52,14 +55,6 @@ start: ## Start production server
 update-deps: ## Update dependencies
 	@echo "${CYAN}Updating dependencies...${NC}"
 	$(NPM) update
-
-security-check: ## Check for security vulnerabilities
-	@echo "${CYAN}Checking for security vulnerabilities...${NC}"
-	$(NPM) audit
-
-docs: ## Generate documentation
-	@echo "${CYAN}Generating documentation...${NC}"
-	$(NPX) typedoc --out docs src/
 
 clean-cache: ## Clean cache
 	@echo "${CYAN}Cleaning cache...${NC}"
