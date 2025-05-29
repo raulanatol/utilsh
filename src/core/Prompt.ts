@@ -22,7 +22,7 @@ export class Prompt {
   private setupPluginsCommand() {
     const pluginsCmd = this.#program.command('plugins').description('Plugin management');
     pluginsCmd
-      .command('list')
+      .command('active')
       .description('List active plugins (in config)')
       .action(() => {
         const active = this.#pluginManager.getActivePlugins();
@@ -36,15 +36,10 @@ export class Prompt {
 
     pluginsCmd
       .command('available')
-      .description('List installed plugins in node_modules')
+      .description('List installed plugins')
       .action(() => {
         const available = this.#pluginManager.getAvailablePlugins();
-        if (available.length === 0) {
-          console.log('No plugins installed.');
-        } else {
-          console.log('Installed plugins:');
-          available.forEach(p => console.log('  -', p));
-        }
+        available.forEach(p => console.log('  -', p));
       });
 
     pluginsCmd

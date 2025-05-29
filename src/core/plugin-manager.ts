@@ -7,6 +7,34 @@ const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 const PLUGINS_DIR = path.join(process.cwd(), 'src', 'plugins');
 
+interface PluginInfo {
+  path: string;
+  name: string;
+}
+
+const findPlugins = (dir: string): PluginInfo[] => {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const plugins: PluginInfo[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      plugins.push(...findPlugins(fullPath));
+    } else if (entry.isFile()) {
+      if (entry.name.endsWith('.plugin.ts')) {
+        const pluginName = path.basename(path.dirname(fullPath));
+        plugins.push({
+          path: fullPath,
+          name: pluginName
+        });
+      }
+    }
+  }
+
+  return plugins;
+};
+
 export interface PluginSettings {
   enabled: boolean;
 
@@ -36,7 +64,7 @@ export class PluginManager {
       const detected = this.detectInstalledPlugins();
       const initialConfig: UtilshConfig = { plugins: {} };
       detected.forEach(plugin => {
-        initialConfig.plugins[plugin] = { enabled: true };
+        initialConfig.plugins[plugin.name] = { enabled: true };
       });
       fs.writeFileSync(CONFIG_PATH, JSON.stringify(initialConfig, null, 2));
       return initialConfig;
@@ -44,12 +72,12 @@ export class PluginManager {
     return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
   }
 
-  private detectInstalledPlugins(): string[] {
-    if (!fs.existsSync(PLUGINS_DIR)) return [];
-    return fs
-      .readdirSync(PLUGINS_DIR)
-      .filter(name => name.endsWith('.ts') || name.endsWith('.js'))
-      .map(name => path.join(PLUGINS_DIR, name));
+  private detectInstalledPlugins(): PluginInfo[] {
+    if (!fs.existsSync(PLUGINS_DIR)) {
+      return [];
+    }
+
+    return findPlugins(PLUGINS_DIR);
   }
 
   getConfig(): UtilshConfig {
@@ -67,7 +95,7 @@ export class PluginManager {
   }
 
   getAvailablePlugins(): string[] {
-    return this.detectInstalledPlugins();
+    return this.detectInstalledPlugins().map(plugin => plugin.name);
   }
 
   addPlugin(pluginName: string, settings: PluginSettings = { enabled: true }): void {
