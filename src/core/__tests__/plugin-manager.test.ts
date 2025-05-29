@@ -4,7 +4,7 @@ import os from 'os';
 import path from 'path';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { PluginManager } from '../plugin-manager';
+import { PluginManager } from '../plugin-manager.js';
 
 // Mock fs module
 vi.mock('fs');
@@ -93,12 +93,6 @@ describe('PluginManager', () => {
       const config = pluginManager.getConfig();
       expect(config.plugins.plugin1).toBeUndefined();
       expect(mockedFs.writeFileSync).toHaveBeenCalled();
-    });
-
-    it.skip('should get active plugins', () => {
-      const activePlugins = pluginManager.getActivePlugins();
-      expect(activePlugins).toContain('plugin1');
-      expect(activePlugins).not.toContain('plugin2');
     });
   });
 

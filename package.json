@@ -1,6 +1,7 @@
 {
   "name": "@raulanatol/utilsh",
   "version": "1.0.4",
+  "type": "module",
   "author": {
     "name": "Raúl Anatol",
     "email": "hello@raulanatol.com"
@@ -9,6 +10,12 @@
   "main": "dist/index.js",
   "bin": {
     "utilsh": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
   "scripts": {
     "build": "tsc",
@@ -20,15 +27,17 @@
     "format:check": "prettier --check \"**/*.{ts,json}\"",
     "prepare": "sh scripts/prepare.sh",
     "preinstall": "sh scripts/preinstall.sh",
-    "dev": "ts-node src/index.ts"
+    "dev": "node --loader ts-node/esm --no-warnings=ExperimentalWarning src/index.ts"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.4.1",
     "@types/node": "20.11.24",
+    "@types/update-notifier": "6.0.8",
     "@typescript-eslint/eslint-plugin": "7.1.0",
     "@typescript-eslint/parser": "7.1.0",
     "@vitest/coverage-v8": "3.1.4",
     "eslint": "8.57.0",
+    "eslint-plugin-vitest": "^0.5.4",
     "husky": "9.0.11",
     "jsonc-eslint-parser": "2.4.0",
     "lint-staged": "15.2.2",
@@ -41,7 +50,8 @@
   "dependencies": {
     "commander": "12.0.0",
     "glob": "11.0.2",
-    "inquirer": "12.6.3"
+    "inquirer": "12.6.3",
+    "update-notifier": "7.3.1"
   },
   "lint-staged": {
     "*.{ts,json}": [
