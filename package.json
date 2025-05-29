@@ -17,8 +17,8 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,json}\"",
     "format:check": "prettier --check \"**/*.{ts,json}\"",
-    "prepare": "husky",
-    "preinstall": "node scripts/check-node-version.js",
+    "prepare": "bash scripts/prepare.sh",
+    "preinstall": "bash scripts/preinstall.sh",
     "dev": "ts-node src/index.ts",
     "test:coverage": "vitest run --coverage"
   },
