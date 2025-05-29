@@ -1,7 +1,8 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { Command } from 'commander';
+
+import { Plugin } from './Plugin.js';
 
 const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
@@ -54,7 +55,7 @@ export interface UtilshConfig {
 }
 
 export class PluginManager {
-  private plugins: Map<string, unknown> = new Map();
+  private plugins: Map<string, Plugin> = new Map();
   private config: UtilshConfig;
 
   constructor() {
@@ -130,22 +131,32 @@ export class PluginManager {
     this.saveConfig();
   }
 
-  async loadPlugins(program: Command): Promise<void> {
+  async loadPlugins(): Promise<void> {
     for (const [pluginName, settings] of Object.entries(this.config.plugins)) {
-      if (!settings.enabled) continue;
-      try {
-        const plugin = await import(pluginName);
-        if (typeof plugin.default === 'function') {
-          plugin.default(program, settings);
-          this.plugins.set(pluginName, plugin);
+      if (settings.enabled) {
+        const newPlugin = await this.loadPlugin(pluginName);
+        if (newPlugin) {
+          this.plugins.set(pluginName, newPlugin);
         }
-      } catch (error) {
-        console.error(`Error loading plugin ${pluginName}:`, error);
       }
     }
   }
 
-  getPlugins(): Map<string, unknown> {
+  private async loadPlugin(pluginName: string): Promise<Plugin | undefined> {
+    try {
+      const plugin = await import(path.join(PLUGINS_DIR, pluginName, `${pluginName}.plugin.js`));
+      return new plugin.default();
+    } catch (error) {
+      console.error(`Error loading plugin ${pluginName}:`, error);
+    }
+    return undefined;
+  }
+
+  async setup() {
+    await this.loadPlugins();
+  }
+
+  getPlugins(): Map<string, Plugin> {
     return this.plugins;
   }
 }

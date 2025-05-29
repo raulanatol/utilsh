@@ -1,3 +1,4 @@
+import search from '@inquirer/search';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 
@@ -16,7 +17,7 @@ export class Prompt {
 
   async setup() {
     this.setupPluginsCommand();
-    await this.#pluginManager.loadPlugins(this.#program);
+    this.setupLoadedPluginsCommand();
   }
 
   private setupPluginsCommand() {
@@ -80,12 +81,63 @@ export class Prompt {
       });
 
     pluginsCmd
+      .command('activate')
+      .description('Activate plugins using an interactive selector')
+      .action(async () => {
+        const available = this.#pluginManager.getAvailablePlugins();
+        const active = this.#pluginManager.getActivePlugins();
+
+        const choices = available.map(plugin => ({
+          name: `${active.includes(plugin) ? '✓ ' : '  '}${plugin}`,
+          value: plugin,
+          description: active.includes(plugin) ? 'Active' : 'Inactive'
+        }));
+
+        const selected = await search({
+          message: 'Select a plugin to toggle (type to filter):',
+          source: async (input = '') => {
+            const searchTerm = input.toLowerCase();
+            return choices.filter(
+              choice =>
+                choice.name.toLowerCase().includes(searchTerm) || choice.value.toLowerCase().includes(searchTerm)
+            );
+          }
+        });
+
+        // Toggle the selected plugin state
+        const isActive = active.includes(selected);
+        if (isActive) {
+          this.#pluginManager.removePlugin(selected);
+        } else {
+          this.#pluginManager.addPlugin(selected, { enabled: true });
+        }
+
+        console.log(`Plugin ${selected} ${isActive ? 'deactivated' : 'activated'} successfully.`);
+      });
+
+    pluginsCmd
       .command('remove <plugin>')
       .description('Remove a plugin from config')
       .action(plugin => {
         this.#pluginManager.removePlugin(plugin);
         console.log(`Plugin ${plugin} removed from config.`);
       });
+  }
+
+  private setupLoadedPluginsCommand() {
+    const loadedPlugins = this.#pluginManager.getPlugins().values();
+    for (const plugin of loadedPlugins) {
+      this.#program
+        .command(plugin.name)
+        .description(plugin.description)
+        .action(async (...args) => {
+          try {
+            await plugin.run(...args);
+          } catch (e) {
+            console.error(`Error running plugin ${plugin.name}:`, e);
+          }
+        });
+    }
   }
 
   run() {

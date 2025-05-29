@@ -1,10 +1,15 @@
-import { Command } from 'commander';
+import { Plugin } from '../../core/Plugin.js';
 
-export default function helloPlugin(program: Command): void {
-  program
-    .command('hello')
-    .description('Print a hello world message')
-    .action(() => {
-      console.log('Hello, World!');
-    });
+class HelloPlugin extends Plugin {
+  constructor() {
+    super('hello', 'Print a hello world message');
+  }
+
+  run(parameters?: string[]): Promise<void> {
+    console.log('hello.plugin.ts [11]', parameters);
+    console.log('Hello, World!');
+    return Promise.resolve();
+  }
 }
+
+export default HelloPlugin;

@@ -15,6 +15,7 @@ export class Runner {
 
   async run(): Promise<void> {
     this.checkUpdates();
+    await this.#pluginManager.setup();
     await this.#prompt.setup();
     this.#prompt.run();
   }
