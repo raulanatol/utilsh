@@ -1,7 +1,7 @@
-import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
+import { FileSystemHelper } from './helpers/FileSystemHelper.js';
 import { Plugin } from './Plugin.js';
 
 const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
@@ -19,7 +19,7 @@ interface PluginInfo {
 }
 
 const findPlugins = (dir: string): PluginInfo[] => {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const entries = FileSystemHelper.readdirWithFileTypesSync(dir);
   const plugins: PluginInfo[] = [];
 
   for (const entry of entries) {
@@ -56,31 +56,33 @@ export interface UtilshConfig {
 
 export class PluginManager {
   private plugins: Map<string, Plugin> = new Map();
-  private config: UtilshConfig;
+  private readonly config: UtilshConfig;
 
   constructor() {
     this.config = this.loadOrCreateConfig();
   }
 
   private loadOrCreateConfig(): UtilshConfig {
-    if (!fs.existsSync(CONFIG_DIR)) {
-      fs.mkdirSync(CONFIG_DIR, { recursive: true });
+    if (!FileSystemHelper.existsSync(CONFIG_DIR)) {
+      FileSystemHelper.mkdirSync(CONFIG_DIR);
     }
-    if (!fs.existsSync(CONFIG_PATH)) {
-      // Detectar plugins instalados
+
+    if (!FileSystemHelper.existsSync(CONFIG_PATH)) {
       const detected = this.detectInstalledPlugins();
       const initialConfig: UtilshConfig = { plugins: {} };
       detected.forEach(plugin => {
         initialConfig.plugins[plugin.name] = { enabled: true };
       });
-      fs.writeFileSync(CONFIG_PATH, JSON.stringify(initialConfig, null, 2));
+
+      FileSystemHelper.writeJSONFileSync(CONFIG_PATH, initialConfig);
       return initialConfig;
     }
-    return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+
+    return FileSystemHelper.readJSONFileSync<UtilshConfig>(CONFIG_PATH);
   }
 
   private detectInstalledPlugins(): PluginInfo[] {
-    if (!fs.existsSync(PLUGINS_DIR)) {
+    if (!FileSystemHelper.existsSync(PLUGINS_DIR)) {
       return [];
     }
 
@@ -92,7 +94,7 @@ export class PluginManager {
   }
 
   saveConfig(): void {
-    fs.writeFileSync(CONFIG_PATH, JSON.stringify(this.config, null, 2));
+    FileSystemHelper.writeJSONFileSync(CONFIG_PATH, this.config);
   }
 
   getActivePlugins(): string[] {
@@ -107,12 +109,12 @@ export class PluginManager {
 
   getMetadataFrom(pluginName: string): PluginMetadata | null {
     const pluginPath = path.join(PLUGINS_DIR, pluginName, `${pluginName}.plugin.json`);
-    if (!fs.existsSync(pluginPath)) {
+    if (FileSystemHelper.existsSync(pluginPath)) {
       return null;
     }
 
     try {
-      const pluginMetadata: unknown = JSON.parse(fs.readFileSync(pluginPath, 'utf-8'));
+      const pluginMetadata = FileSystemHelper.readJSONFileSync<PluginMetadata>(pluginPath);
       // TODO validate metadata structure
       return pluginMetadata as PluginMetadata;
     } catch (error) {
