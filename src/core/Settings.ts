@@ -7,6 +7,7 @@ import { PluginsConfiguration } from './plugins/PluginsConfiguration.js';
 
 const getDefaultConfig = () => ({
   version: 1,
+  settings: {},
   plugins: {}
 });
 
@@ -16,6 +17,9 @@ type PluginSettings = {
 };
 
 type Configuration = {
+  settings: {
+    [settingGroup: string]: Record<string, string> | null;
+  };
   plugins: {
     [pluginName: string]: PluginSettings;
   };
@@ -37,11 +41,11 @@ export class Settings {
   }
 
   private loadOrCreateConfig(): Configuration {
-    if (!FileSystemHelper.existsSync(this.#configDir)) {
-      FileSystemHelper.mkdirSync(this.#configDir);
+    if (!FileSystemHelper.exists(this.#configDir)) {
+      FileSystemHelper.mkdir(this.#configDir);
     }
 
-    if (!FileSystemHelper.existsSync(this.#configPath)) {
+    if (!FileSystemHelper.exists(this.#configPath)) {
       const newConfig = getDefaultConfig();
       FileSystemHelper.writeJSONFile(this.#configPath, newConfig);
       return newConfig;
@@ -67,6 +71,18 @@ export class Settings {
   setPluginSettings(pluginName: string, settings: PluginSettings) {
     this.#configuration.plugins[pluginName] = settings;
     this.saveConfig();
+  }
+
+  setSettings(settingGroupName: string, settings: Record<string, string>) {
+    if (!this.#configuration.settings[settingGroupName]) {
+      this.#configuration.settings[settingGroupName] = {};
+    }
+    Object.assign(this.#configuration.settings[settingGroupName]!, settings);
+    this.saveConfig();
+  }
+
+  getSettings<T>(settingGroupName: string): T | null {
+    return this.#configuration.settings[settingGroupName] as T;
   }
 
   saveConfig() {

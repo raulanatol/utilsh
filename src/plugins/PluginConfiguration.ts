@@ -6,6 +6,10 @@ export const PluginConfiguration: PluginsConfiguration = {
     description: 'Plugins for Obsidian integration',
     plugins: [
       {
+        name: 'setup',
+        description: 'Setup Obsidian plugins and configurations'
+      },
+      {
         name: 'daily-archive',
         description: 'Archive daily notes in Obsidian'
       }

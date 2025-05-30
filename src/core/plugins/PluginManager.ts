@@ -13,7 +13,7 @@ export class PluginManager {
   private async loadPlugin(pluginName: string, groupName = ''): Promise<Plugin | undefined> {
     try {
       const plugin = await import(join(this.#settings.pluginsDir, groupName, pluginName, `${pluginName}.plugin.js`));
-      return new plugin.default();
+      return new plugin.default(this.#settings);
     } catch (error) {
       console.error(`Error loading plugin ${pluginName}:`, error);
     }
