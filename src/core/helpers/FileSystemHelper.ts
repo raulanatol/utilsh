@@ -1,4 +1,4 @@
-import fs, { Dirent, PathLike, PathOrFileDescriptor } from 'node:fs';
+import fs, { PathLike, PathOrFileDescriptor } from 'node:fs';
 
 export class FileSystemHelper {
   /**
@@ -45,13 +45,5 @@ export class FileSystemHelper {
 
   static readJSONFileSync<T extends object>(path: PathOrFileDescriptor): T {
     return JSON.parse(this.readFileSync(path, { encoding: 'utf-8' })) satisfies T;
-  }
-
-  static readdirWithFileTypesSync(path: PathLike): Dirent[] {
-    return fs.readdirSync(path, { withFileTypes: true });
-  }
-
-  static readdirSync(path: PathLike): string[] | Buffer[] {
-    return fs.readdirSync(path);
   }
 }

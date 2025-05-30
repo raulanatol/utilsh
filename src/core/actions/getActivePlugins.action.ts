@@ -1,7 +1,7 @@
-import { PluginManager } from '../plugin-manager.js';
+import { Settings } from '../Settings.js';
 
-export const getActivePluginsAction = (pluginManager: PluginManager) => () => {
-  const active = pluginManager.getActivePlugins();
+export const getActivePluginsAction = (settings: Settings) => () => {
+  const active = settings.getActivePluginsName();
   if (!active.length) {
     console.log('No active plugins.');
   } else {

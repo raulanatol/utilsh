@@ -1,13 +1,19 @@
 import os from 'node:os';
 import path from 'node:path';
 
+import { PluginConfiguration } from '../plugins/PluginConfiguration.js';
 import { FileSystemHelper } from './helpers/FileSystemHelper.js';
-import { PluginSettings } from './plugin-manager.js';
+import { PluginsConfiguration } from './plugins/PluginsConfiguration.js';
 
 const getDefaultConfig = () => ({
   version: 1,
   plugins: {}
 });
+
+type PluginSettings = {
+  enabled: boolean;
+  [key: string]: unknown;
+};
 
 type Configuration = {
   plugins: {
@@ -20,12 +26,14 @@ export class Settings {
   readonly #configPath: string;
   readonly #pluginsDir: string;
   readonly #configuration: Configuration;
+  readonly #pluginsConfiguration: PluginsConfiguration;
 
   constructor() {
     this.#configDir = path.join(os.homedir(), '.config', 'utilsh');
     this.#configPath = path.join(this.#configDir, 'config.json');
     this.#pluginsDir = path.join(process.cwd(), 'src', 'plugins');
     this.#configuration = this.loadOrCreateConfig();
+    this.#pluginsConfiguration = PluginConfiguration;
   }
 
   private loadOrCreateConfig(): Configuration {
@@ -44,8 +52,15 @@ export class Settings {
     return configuration;
   }
 
-  removePlugin(pluginName: string) {
+  deactivatePlugin(pluginName: string) {
     delete this.#configuration?.plugins[pluginName];
+    this.saveConfig();
+  }
+
+  activatePlugin(pluginName: string) {
+    this.#configuration.plugins[pluginName] = {
+      enabled: true
+    };
     this.saveConfig();
   }
 
@@ -64,5 +79,40 @@ export class Settings {
 
   get pluginsDir(): string {
     return this.#pluginsDir;
+  }
+
+  getAvailablePlugins() {
+    return Object.entries(this.#pluginsConfiguration).flatMap(([groupKey, groupInfo]) => {
+      return groupInfo.plugins.map(plugin => ({
+        name: plugin.name,
+        description: plugin.description,
+        group: groupKey
+      }));
+    });
+  }
+
+  getActivePluginsName(): string[] {
+    return Object.entries(this.#configuration.plugins)
+      .filter(([, settings]) => settings.enabled)
+      .map(([name]) => name);
+  }
+
+  getActivePlugins(): PluginsConfiguration {
+    const activePlugins = this.getActivePluginsName();
+    const result: PluginsConfiguration = {};
+
+    Object.entries(this.#pluginsConfiguration).forEach(([groupKey, groupInfo]) => {
+      const activePluginsInGroup = groupInfo.plugins.filter(plugin => activePlugins.includes(plugin.name));
+
+      if (activePluginsInGroup.length > 0) {
+        result[groupKey] = {
+          name: groupInfo.name,
+          description: groupInfo.description,
+          plugins: activePluginsInGroup
+        };
+      }
+    });
+
+    return result;
   }
 }

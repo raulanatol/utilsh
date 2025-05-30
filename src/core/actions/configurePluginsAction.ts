@@ -1,15 +1,15 @@
 import search from '@inquirer/search';
 
-import { PluginManager } from '../plugin-manager.js';
+import { Settings } from '../Settings.js';
 
-export const activatePluginAction = (pluginManager: PluginManager) => async () => {
-  const available = pluginManager.getAvailablePlugins();
-  const active = pluginManager.getActivePlugins();
+export const configurePluginsAction = (settings: Settings) => async () => {
+  const available = settings.getAvailablePlugins();
+  const active = settings.getActivePluginsName();
 
   const choices = available.map(plugin => ({
-    name: `${active.includes(plugin) ? '✓ ' : '  '}${plugin}`,
-    value: plugin,
-    description: active.includes(plugin) ? 'Active' : 'Inactive'
+    name: `${active.includes(plugin.name) ? '✓ ' : '  '}${plugin.name}`,
+    value: plugin.name,
+    description: active.includes(plugin.name) ? 'Active' : 'Inactive'
   }));
 
   const selected = await search({
@@ -25,9 +25,9 @@ export const activatePluginAction = (pluginManager: PluginManager) => async () =
   // Toggle the selected plugin state
   const isActive = active.includes(selected);
   if (isActive) {
-    pluginManager.removePlugin(selected);
+    settings.deactivatePlugin(selected);
   } else {
-    await pluginManager.addPlugin(selected, { enabled: true });
+    settings.activatePlugin(selected);
   }
 
   console.log(`Plugin ${selected} ${isActive ? 'deactivated' : 'activated'} successfully.`);

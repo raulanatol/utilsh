@@ -1,19 +1,19 @@
 import { Command } from 'commander';
 
 import pkg from '../../package.json' with { type: 'json' };
-import { activatePluginAction } from './actions/activatePlugin.action.js';
-import { addPluginAction } from './actions/addPlugin.action.js';
+import { configurePluginsAction } from './actions/configurePluginsAction.js';
 import { getActivePluginsAction } from './actions/getActivePlugins.action.js';
-import { getAvailablePluginsAction } from './actions/getAvailablePlugins.action.js';
-import { removePluginAction } from './actions/removePlugin.action.js';
-import { PluginManager } from './plugin-manager.js';
+import { PluginManager } from './plugins/PluginManager.js';
+import { Settings } from './Settings.js';
 
 export class Prompt {
-  #pluginManager: PluginManager;
+  readonly #pluginManager: PluginManager;
+  readonly #settings: Settings;
   #program: Command;
 
-  constructor(pluginManager: PluginManager) {
+  constructor(pluginManager: PluginManager, settings: Settings) {
     this.#pluginManager = pluginManager;
+    this.#settings = settings;
     this.#program = new Command();
     this.#program.name('utilsh').description(pkg.description).version(pkg.version);
   }
@@ -29,43 +29,31 @@ export class Prompt {
     pluginsCmd
       .command('active')
       .description('List active plugins (in config)')
-      .action(getActivePluginsAction(this.#pluginManager));
+      .action(getActivePluginsAction(this.#settings));
 
     pluginsCmd
-      .command('available')
-      .description('List installed plugins')
-      .action(getAvailablePluginsAction(this.#pluginManager));
-
-    pluginsCmd
-      .command('add <plugin> [settings]')
-      .description('Add a plugin to config. You can pass settings as JSON or leave it empty for interactive mode.')
-      .action(addPluginAction(this.#pluginManager));
-
-    pluginsCmd
-      .command('activate')
-      .description('Activate plugins using an interactive selector')
-      .action(activatePluginAction(this.#pluginManager));
-
-    pluginsCmd
-      .command('remove <plugin>')
-      .description('Remove a plugin from config')
-      .action(removePluginAction(this.#pluginManager));
+      .command('config')
+      .description('Activate/Deactivate plugins using an interactive selector')
+      .action(configurePluginsAction(this.#settings));
   }
 
   private setupLoadedPluginsCommand() {
-    const loadedPlugins = this.#pluginManager.getPlugins().values();
-    for (const plugin of loadedPlugins) {
-      this.#program
-        .command(plugin.name)
-        .description(plugin.description)
-        .action(async (...args) => {
-          try {
-            await plugin.run(...args);
-          } catch (e) {
-            console.error(`Error running plugin ${plugin.name}:`, e);
-          }
-        });
-    }
+    const activePlugins = this.#settings.getActivePlugins();
+    Object.entries(activePlugins).forEach(([groupKey, value]) => {
+      const groupCommand = this.#program.command(groupKey).description(value.description);
+      for (const plugin of value.plugins) {
+        groupCommand
+          .command(plugin.name)
+          .description(plugin.description)
+          .action(async (...args) => {
+            try {
+              await this.#pluginManager.executePlugin(groupKey, plugin.name, ...args);
+            } catch (e) {
+              console.error(`Error running plugin ${plugin.name}:`, e);
+            }
+          });
+      }
+    });
   }
 
   run() {

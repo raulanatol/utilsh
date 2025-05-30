@@ -1,7 +1,7 @@
 import updateNotifier from 'update-notifier';
 
 import pkg from '../../package.json' with { type: 'json' };
-import { PluginManager } from './plugin-manager.js';
+import { PluginManager } from './plugins/PluginManager.js';
 import { Prompt } from './Prompt.js';
 import { Settings } from './Settings.js';
 
@@ -13,12 +13,11 @@ export class Runner {
   constructor() {
     this.#settings = new Settings();
     this.#pluginManager = new PluginManager(this.#settings);
-    this.#prompt = new Prompt(this.#pluginManager);
+    this.#prompt = new Prompt(this.#pluginManager, this.#settings);
   }
 
   async run(): Promise<void> {
     this.checkUpdates();
-    await this.#pluginManager.setup();
     await this.#prompt.setup();
     this.#prompt.run();
   }
