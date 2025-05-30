@@ -1,12 +1,8 @@
-import os from 'os';
 import path from 'path';
 
 import { FileSystemHelper } from './helpers/FileSystemHelper.js';
 import { Plugin } from './Plugin.js';
-
-const CONFIG_DIR = path.join(os.homedir(), '.config', 'utilsh');
-const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
-const PLUGINS_DIR = path.join(process.cwd(), 'src', 'plugins');
+import { Settings } from './Settings.js';
 
 interface PluginMetadata {
   name: string;
@@ -48,57 +44,24 @@ export interface PluginSettings {
   [key: string]: unknown;
 }
 
-export interface UtilshConfig {
-  plugins: {
-    [pluginName: string]: PluginSettings;
-  };
-}
-
 export class PluginManager {
   private plugins: Map<string, Plugin> = new Map();
-  private readonly config: UtilshConfig;
+  readonly #settings: Settings;
 
-  constructor() {
-    this.config = this.loadOrCreateConfig();
-  }
-
-  private loadOrCreateConfig(): UtilshConfig {
-    if (!FileSystemHelper.existsSync(CONFIG_DIR)) {
-      FileSystemHelper.mkdirSync(CONFIG_DIR);
-    }
-
-    if (!FileSystemHelper.existsSync(CONFIG_PATH)) {
-      const detected = this.detectInstalledPlugins();
-      const initialConfig: UtilshConfig = { plugins: {} };
-      detected.forEach(plugin => {
-        initialConfig.plugins[plugin.name] = { enabled: true };
-      });
-
-      FileSystemHelper.writeJSONFileSync(CONFIG_PATH, initialConfig);
-      return initialConfig;
-    }
-
-    return FileSystemHelper.readJSONFileSync<UtilshConfig>(CONFIG_PATH);
+  constructor(settings: Settings) {
+    this.#settings = settings;
   }
 
   private detectInstalledPlugins(): PluginInfo[] {
-    if (!FileSystemHelper.existsSync(PLUGINS_DIR)) {
+    if (!FileSystemHelper.existsSync(this.#settings.pluginsDir)) {
       return [];
     }
 
-    return findPlugins(PLUGINS_DIR);
-  }
-
-  getConfig(): UtilshConfig {
-    return this.config;
-  }
-
-  saveConfig(): void {
-    FileSystemHelper.writeJSONFileSync(CONFIG_PATH, this.config);
+    return findPlugins(this.#settings.pluginsDir);
   }
 
   getActivePlugins(): string[] {
-    return Object.entries(this.config.plugins)
+    return Object.entries(this.#settings.configuration.plugins)
       .filter(([, settings]) => settings.enabled)
       .map(([name]) => name);
   }
@@ -108,7 +71,7 @@ export class PluginManager {
   }
 
   getMetadataFrom(pluginName: string): PluginMetadata | null {
-    const pluginPath = path.join(PLUGINS_DIR, pluginName, `${pluginName}.plugin.json`);
+    const pluginPath = path.join(this.#settings.pluginsDir, pluginName, `${pluginName}.plugin.json`);
     if (FileSystemHelper.existsSync(pluginPath)) {
       return null;
     }
@@ -123,31 +86,19 @@ export class PluginManager {
     return null;
   }
 
-  addPlugin(pluginName: string, settings: PluginSettings = { enabled: true }): void {
-    this.config.plugins[pluginName] = settings;
-    this.saveConfig();
-  }
-
-  removePlugin(pluginName: string): void {
-    delete this.config.plugins[pluginName];
-    this.saveConfig();
-  }
-
   async loadPlugins(): Promise<void> {
-    for (const [pluginName, settings] of Object.entries(this.config.plugins)) {
+    for (const [pluginName, settings] of Object.entries(this.#settings.configuration.plugins)) {
       if (settings.enabled) {
-        const newPlugin = await this.loadPlugin(pluginName);
-        if (newPlugin) {
-          this.plugins.set(pluginName, newPlugin);
-        }
+        await this.loadPlugin(pluginName);
       }
     }
   }
 
   private async loadPlugin(pluginName: string): Promise<Plugin | undefined> {
     try {
-      const plugin = await import(path.join(PLUGINS_DIR, pluginName, `${pluginName}.plugin.js`));
-      return new plugin.default();
+      const plugin = await import(path.join(this.#settings.pluginsDir, pluginName, `${pluginName}.plugin.js`));
+      const newPlugin = new plugin.default();
+      this.plugins.set(pluginName, newPlugin);
     } catch (error) {
       console.error(`Error loading plugin ${pluginName}:`, error);
     }
@@ -160,5 +111,15 @@ export class PluginManager {
 
   getPlugins(): Map<string, Plugin> {
     return this.plugins;
+  }
+
+  async addPlugin(pluginName: string, settings: PluginSettings): Promise<void> {
+    this.#settings.setPluginSettings(pluginName, settings);
+    await this.loadPlugin(pluginName);
+  }
+
+  removePlugin(pluginName: string): void {
+    this.#settings.removePlugin(pluginName);
+    this.plugins.delete(pluginName);
   }
 }

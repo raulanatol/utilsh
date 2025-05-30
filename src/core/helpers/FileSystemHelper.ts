@@ -29,7 +29,7 @@ export class FileSystemHelper {
     fs.writeFileSync(path, data, options);
   }
 
-  static writeJSONFileSync(path: PathOrFileDescriptor, data: object): void {
+  static writeJSONFile(path: PathOrFileDescriptor, data: object): void {
     this.writeFileSync(path, JSON.stringify(data, null, 2), { encoding: 'utf-8' });
   }
 

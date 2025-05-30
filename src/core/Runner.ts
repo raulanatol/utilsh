@@ -3,13 +3,16 @@ import updateNotifier from 'update-notifier';
 import pkg from '../../package.json' with { type: 'json' };
 import { PluginManager } from './plugin-manager.js';
 import { Prompt } from './Prompt.js';
+import { Settings } from './Settings.js';
 
 export class Runner {
   readonly #prompt: Prompt;
   readonly #pluginManager: PluginManager;
+  readonly #settings: Settings;
 
   constructor() {
-    this.#pluginManager = new PluginManager();
+    this.#settings = new Settings();
+    this.#pluginManager = new PluginManager(this.#settings);
     this.#prompt = new Prompt(this.#pluginManager);
   }
 
