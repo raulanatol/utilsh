@@ -1,6 +1,7 @@
 import { join } from 'node:path';
 
 import { FileSystemHelper } from '../../../core/helpers/FileSystemHelper.js';
+import { Logger } from '../../../core/Logger.js';
 import { Plugin } from '../../../core/plugins/Plugin.js';
 import { Settings } from '../../../core/Settings.js';
 import { ObsidianSettings } from '../setup/types.js';
@@ -15,7 +16,7 @@ class DailyArchivePlugin extends Plugin {
   async run(): Promise<void> {
     const obsidianSettings = this.getSettingsFrom<ObsidianSettings>('obsidian');
     if (!obsidianSettings) {
-      console.warn('Obsidian settings not found. Daily archive plugin will not run. Execute the setup plugin first.');
+      Logger.error('Obsidian settings not found. Daily archive plugin will not run. Execute the setup plugin first.');
       return;
     }
     const dailyFolder = join(obsidianSettings.vaultPath, obsidianSettings.dailyNotesPath);
@@ -24,6 +25,7 @@ class DailyArchivePlugin extends Plugin {
     });
     if (dailyFiles.length < 2) {
       // Gets one file at least
+      Logger.info('No daily files to archive. At least one file is required.');
       return;
     }
 
@@ -40,6 +42,8 @@ class DailyArchivePlugin extends Plugin {
 
       FileSystemHelper.move(source, destination);
     }
+
+    Logger.success('Daily archive completed successfully.');
   }
 }
 

@@ -1,5 +1,6 @@
 import search from '@inquirer/search';
 
+import { Logger } from '../Logger.js';
 import { Settings } from '../Settings.js';
 
 export const configurePluginsAction = (settings: Settings) => async () => {
@@ -30,5 +31,5 @@ export const configurePluginsAction = (settings: Settings) => async () => {
     settings.activatePlugin(selected);
   }
 
-  console.log(`Plugin ${selected} ${isActive ? 'deactivated' : 'activated'} successfully.`);
+  Logger.success(`Plugin ${selected} ${isActive ? 'deactivated' : 'activated'} successfully.`);
 };
